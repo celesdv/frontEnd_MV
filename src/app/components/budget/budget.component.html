@@ -1,0 +1,70 @@
+<div class="card m-3" *ngIf="router.url != '/dashboard'">
+  <div class="d-grid gap-2 d-md-flex justify-content-between m-2 mx-3">
+    <div ngxTippy data-tippy-content="Volver atras" routerLink="/dashboard">
+      <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+    </div>
+    <div>
+      <button class="btn btn-success me-md-2 mt-2" type="button" routerLink="form">Nuevo Presupuesto</button>
+    </div>
+  </div>
+</div>
+
+<div class="card m-3">
+  <div class="card-body">
+    <h5 class="card-title ">Listado de Presupuestos</h5>
+
+    <table class="table" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Pedido</th>
+          <th scope="col">Items</th>
+          <th scope="col">Detalle</th>
+          <th scope="col">Valor</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let c of budgets; index as i;">
+          <td class="align-middle">{{c.order.name}}</td>
+          <td class="align-middle">
+            <p>Destino: {{c.order.destination}}</p>
+            <p>Fecha:{{c.order.date}}</p>
+            <p>Noches: {{c.order.nights}}</p>
+            <p>Pasajeros: {{c.order.toddler + c.order.child + c.order.adult + c.order.teen + c.order.senior}}</p>
+          </td>
+          <td class="align-middle">
+            <p *ngIf="c.flights.length > 0">Aereos: {{c.flights.length}} <span *ngFor="let i of c.flights">| {{i.origin
+                }} / {{i.destination}}</span></p>
+            <p *ngIf="c.hotels.length > 0">Hoteles: {{c.hotels.length}} <span *ngFor="let i of c.hotels">|
+                {{i.name}}</span></p>
+            <p *ngIf="c.transfers.length > 0">Traslados: {{c.transfers.length}} <span *ngFor="let i of c.transfers">|
+                {{i.origin
+                }} / {{i.destination}}</span></p>
+            <p *ngIf="c.excursions.length > 0">Excursiones: {{c.excursions.length}} <span
+                *ngFor="let i of c.excursions">|
+                {{i.name}}</span></p>
+            <p *ngIf="c.assistance.length > 0">Asistencias: {{c.assistance.length}} <span *ngFor="let i of c.assistance">|
+              {{i.name}}</span></p>
+            <p *ngIf="c.canneds.length > 0">Enlatados: {{c.canneds.length}} <span *ngFor="let i of c.canneds">|
+              {{i.name}}</span></p>
+          </td>
+          <td class="align-middle">{{c.detail}}</td>
+          <td class="align-middle">$ {{c.value}}</td>
+          <td class="align-middle">
+            <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+              data-tippy-content="Editar" (click)="editBudget(c.id, c.orderId)">
+              <i class="bi bi-pencil-fill" style="color: white;"></i>
+            </div>
+            <div class="p-2 bg-danger text-center rounded-circle mt-2" style="width: 2.5rem;" ngxTippy
+              data-tippy-content="Eliminar" (click)="deleteBudget(c.id!)">
+              <i class="bi bi-trash3-fill" style="color: white;"></i>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-spinner *ngIf="loading"></app-spinner>
+  </div>
+</div>

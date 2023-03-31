@@ -1,8 +1,11 @@
-<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary sticky-top" data-bs-theme="dark">
   <div class="container-fluid m-2">
     <a class="navbar-brand" href="/dashboard">MELCEJ Viajes</a>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-light me-md-2" routerLink="/login" type="button">Salir</button>
+      <button class="btn btn-outline-light me-md-2" type="button"
+        *ngIf="router.url != '/login'"><i class="bi bi-person-fill"></i> Perfil</button>
+      <button class="btn btn-outline-light me-md-2" (click)="logOut()" type="button"
+        *ngIf="router.url != '/login'"><i class="bi bi-box-arrow-left"></i> Salir</button>
     </div>
   </div>
 </nav>

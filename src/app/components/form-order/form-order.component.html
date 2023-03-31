@@ -1,0 +1,117 @@
+<div class="row mt-3">
+  <div class="col-lg-4 offset-lg-4">
+    <div class="card mb-3" style="max-width: 30rem;">
+      <div class="card-header text-center fw-bold fs-5">{{ action }} Pedido</div>
+      <div class="card-body">
+        <app-spinner *ngIf="loading"></app-spinner>
+        <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+
+          <h6 class="mb-2" *ngIf="action != 'Agregar ' ">Usuario Responsable</h6>
+
+          <select class="form-select mb-2" aria-label="Default select example" formControlName="userId"
+            *ngIf="action != 'Agregar ' ">
+            <option *ngFor="let c of users; index as i;" value="{{c.id}}">{{c.first_name}} {{c.last_name}}</option>
+          </select>
+
+          <h6 class="mb-2">Pedido</h6>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Nombre</span>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+          <p *ngIf="this.form.get('name')?.errors?.['required'] && form.get('name')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un nombre
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Destino</span>
+            <input type="text" class="form-control" formControlName="destination">
+          </div>
+          <p *ngIf="this.form.get('destination')?.errors?.['required'] && form.get('destination')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un Destino
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Fecha</span>
+            <input type="text" class="form-control" formControlName="date">
+          </div>
+          <p *ngIf="this.form.get('date')?.errors?.['required'] && form.get('date')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar una Fecha
+          </p>
+
+          <div class="row mb-2">
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-text" id="inputGroup-sizing-default" style="width: 65%;">Noches</span>
+                <input type="number" class="form-control" formControlName="nights">
+              </div>
+              <p *ngIf="this.form.get('nights')?.errors?.['required'] && form.get('nights')?.touched"
+                class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                Debe ingresar las noches
+              </p>
+            </div>
+            <div class="input-group col">
+              <span class="input-group-text" id="inputGroup-sizing-default" style="width: 65%;">Adultos</span>
+              <input type="number" class="form-control" formControlName="adult">
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="input-group col">
+              <span class="input-group-text" id="inputGroup-sizing-default" style="width: 65%;">Bebes</span>
+              <input type="number" class="form-control" formControlName="toddler">
+            </div>
+            <div class="input-group col">
+              <span class="input-group-text" id="inputGroup-sizing-default" style="width: 65%;">Niños</span>
+              <input type="number" class="form-control" formControlName="child">
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="input-group col">
+              <span class="input-group-text" id="inputGroup-sizing-default" style="width: 65%;">Adolesc.</span>
+              <input type="number" class="form-control" formControlName="teen">
+            </div>
+            <div class="input-group col">
+              <span class="input-group-text" id="inputGroup-sizing-default" style="width: 65%;">Mayores</span>
+              <input type="number" class="form-control" formControlName="senior">
+            </div>
+          </div>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">Detalle</span>
+            <textarea class="form-control" formControlName="detail"></textarea>
+          </div>
+
+          <h6 class="mb-2">Contacto</h6>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Email</span>
+            <input type="email" class="form-control" formControlName="email">
+          </div>
+          <p *ngIf="this.form.get('email')?.errors?.['required'] && this.form.get('email')?.errors?.['email'] && form.get('email')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un Email válido
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Télefono</span>
+            <input type="text" class="form-control" formControlName="phone">
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-between m-2">
+            <div ngxTippy data-tippy-content="Volver atras" routerLink="/orders">
+              <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+            </div>
+            <div>
+              <button [disabled]="form.invalid" class="btn btn-success mt-2" type="submit">Aceptar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

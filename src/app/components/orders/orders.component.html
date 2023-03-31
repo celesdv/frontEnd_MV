@@ -1,0 +1,93 @@
+<div class="card m-3" *ngIf="router.url != '/dashboard'">
+  <div class="d-grid gap-2 d-md-flex justify-content-between m-2 mx-3">
+    <div ngxTippy data-tippy-content="Volver atras" routerLink="/dashboard">
+      <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+    </div>
+    <div>
+      <button class="btn btn-success me-md-2 mt-2" type="button" routerLink="form">Nuevo Pedido</button>
+    </div>
+  </div>
+</div>
+
+<div class="card m-3" *ngIf="router.url != '/dashboard'">
+  <div class="card-body">
+    <h5 class="card-title ">Listado de Pedidos</h5>
+
+    <table class="table" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Destino</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Noches</th>
+          <th scope="col">Pasajeros</th>
+          <th scope="col">Email</th>
+          <th scope="col">Télefono</th>
+          <th scope="col">Detalles</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let c of orders; index as i;">
+          <td class="align-middle">
+            <div class="text-center" *ngIf="c.is_budget != false">
+              <i class="bi bi-check-circle-fill" style=" font-size: 1.5rem;"></i>
+            </div>
+          </td>
+          <td class="align-middle">{{c.name}}</td>
+          <td class="align-middle">{{c.destination}}</td>
+          <td class="align-middle">{{c.date}}</td>
+          <td class="align-middle text-center">{{c.nights}}</td>
+          <td class="align-middle text-center">{{c.toddler + c.child + c.adult + c.teen +
+            c.senior}}</td>
+          <td class="align-middle">{{c.email}}</td>
+          <td class="align-middle">{{c.phone}}</td>
+          <td class="align-middle">{{c.detail}}</td>
+          <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+              data-tippy-content="Editar" routerLink="form/{{c.id}}" *ngIf="router.url != '/dashboard'">
+              <i class="bi bi-pencil-fill" style="color: white;"></i>
+            </div>
+            <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+              data-tippy-content="Eliminar" (click)="deleteOrder(c.id!)" *ngIf="router.url != '/dashboard'">
+              <i class="bi bi-trash3-fill" style="color: white;"></i>
+            </div>
+            <div class="p-2 bg-success text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+              data-tippy-content="Presupuestar" (click)="toBudget(c.id!)">
+              <i class="bi bi-file-spreadsheet" style="color: white;"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-spinner *ngIf="loading"></app-spinner>
+  </div>
+</div>
+
+<div class="card mt-3" *ngIf="router.url === '/dashboard'">
+  <div class="table-responsive p-3">
+    <table class="table table-sm" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col" class="text-center">Destino</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let c of orders; index as i;">
+          <td class="align-middle" *ngIf="c.is_budget === false">{{c.name}}</td>
+          <td class="align-middle text-center" *ngIf="c.is_budget === false">{{c.destination}}</td>
+          <td class="d-grid d-md-flex justify-content-md-end" *ngIf="c.is_budget === false">
+            <div class="p-2 bg-success text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+              data-tippy-content="Presupuestar" (click)="toBudget(c.id!)">
+              <i class="bi bi-file-spreadsheet" style="color: white;"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-spinner *ngIf="loading"></app-spinner>
+  </div>
+</div>

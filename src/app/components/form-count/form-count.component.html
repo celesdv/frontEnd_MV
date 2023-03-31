@@ -1,0 +1,51 @@
+<div class="row mt-3">
+  <div class="col-lg-4 offset-lg-4">
+    <div class="card mb-3" style="max-width: 30rem;">
+      <div class="card-header text-center fw-bold fs-5">{{ action }} Cuenta</div>
+      <div class="card-body">
+        <app-spinner *ngIf="loading"></app-spinner>
+        <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Nombre</span>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+          <p *ngIf="this.form.get('name')?.errors?.['required'] && form.get('name')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un nombre
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Alias</span>
+            <input type="text" class="form-control" formControlName="alias">
+          </div>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">CBU</span>
+            <input type="text" step="1" pattern="\d+" class="form-control"
+              formControlName="cbu" maxlength="20"
+              >
+          </div>
+          <p *ngIf="this.form.get('cbu')?.errors?.['pattern'] && form.get('cbu')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            El CBU debe ser solo numerico
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">Detalle</span>
+            <textarea class="form-control" formControlName="detail"></textarea>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-between m-2">
+            <div ngxTippy data-tippy-content="Volver atras" routerLink="/counts">
+              <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+            </div>
+            <div>
+              <button [disabled]="form.invalid" class="btn btn-success mt-2" type="submit">Aceptar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

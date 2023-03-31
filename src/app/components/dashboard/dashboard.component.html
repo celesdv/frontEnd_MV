@@ -1,2 +1,135 @@
-<app-navbar></app-navbar>
-<p>dashboard works!</p>
+<div class="row m-3">
+
+  <div class="card col-3 container mt-2 mb-2">
+    <div class="card-header">
+      Listado de Pedidos
+    </div>
+    <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <h5 class="card-title me-5">Pedidos</h5>
+        <button class="btn btn-primary" type="button" routerLink="/orders">Ver</button>
+      </div>
+      <div class="d-flex justify-content-end mt-2">
+        <button class="btn btn-success" type="button" routerLink="/orders/form">Nuevo</button>
+      </div>
+
+      <app-orders></app-orders>
+    </div>
+  </div>
+
+  <div class="col-9 container">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div class="card card2">
+          <div class="card-header">
+            Listado de Presupuestos
+          </div>
+          <div class="card-body">
+            <div class="m-1">
+              <h5 class="card-title">Presupuestos</h5>
+              <p>Ver, añadir y editar</p>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" type="button" routerLink="/budgets">Ver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 p-2">
+        <div class="card card2">
+          <div class="card-header">
+            Listado de Clientes
+          </div>
+          <div class="card-body">
+            <div class="m-1">
+              <h5 class="card-title">Clientes</h5>
+              <p>Ver, añadir y editar</p>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" type="button" routerLink="/clients">Ver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 p-2">
+        <div class="card card2">
+          <div class="card-header">
+            Listado de Pagos
+          </div>
+          <div class="card-body">
+            <div class="m-1">
+              <h5 class="card-title">Contabilidad</h5>
+              <p>Ver, añadir y editar</p>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" type="button">Ver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row p-2">
+      <div class="card col-12 ">
+        <div class="card-header">
+          Estado de Reservas
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Reservas</h5>
+        </div>
+        <app-spinner></app-spinner>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div class="card card2">
+          <div class="card-header">
+            Listado de Usuarios
+          </div>
+          <div class="card-body">
+            <div class="m-1">
+              <h5 class="card-title">Usuarios</h5>
+              <p>Ver, añadir y editar</p>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" type="button" [disabled]="disable" routerLink="/users">Ver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 p-2">
+        <div class="card card2">
+          <div class="card-header">
+            Listado de Cuentas
+          </div>
+          <div class="card-body">
+            <div class="m-1">
+              <h5 class="card-title">Cuentas</h5>
+              <p>Ver, añadir y editar</p>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" type="button" [disabled]="disable" routerLink="/counts">Ver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 p-2">
+        <div class="card card2">
+          <div class="card-header">
+            Listado de Proveedores
+          </div>
+          <div class="card-body">
+            <div class="m-1">
+              <h5 class="card-title">Proveedores</h5>
+              <p>Ver, añadir y editar</p>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" type="button" [disabled]="disable" routerLink="/suppliers">Ver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

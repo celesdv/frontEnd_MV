@@ -1,0 +1,70 @@
+<div class="row mt-3">
+  <div class="col-lg-4 offset-lg-4">
+    <div class="card mb-3" style="max-width: 30rem;">
+      <div class="card-header text-center fw-bold fs-5">{{ action }} Traslado</div>
+      <div class="card-body">
+        <app-spinner *ngIf="loading"></app-spinner>
+        <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Origen</span>
+            <input type="text" class="form-control" formControlName="origin">
+          </div>
+          <p *ngIf="this.form.get('origin')?.errors?.['required'] && form.get('origin')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un origen
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Destino</span>
+            <input type="text" class="form-control" formControlName="destination">
+          </div>
+          <p *ngIf="this.form.get('destination')?.errors?.['required'] && form.get('destination')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un destino
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Tipo</span>
+            <input type="text" class="form-control" formControlName="Type">
+          </div>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Medio</span>
+            <input type="text" class="form-control" formControlName="conveyance">
+          </div>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Precio</span>
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" formControlName="value">
+            <span class="input-group-text">.00</span>
+          </div>
+          <p *ngIf="this.form.get('value')?.errors?.['required'] && form.get('value')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar el precio
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Impuestos</span>
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" formControlName="tax">
+            <span class="input-group-text">.00</span>
+          </div>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">Detalle</span>
+            <textarea class="form-control" formControlName="detail"></textarea>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
+            <div>
+              <button [disabled]="form.invalid" class="btn btn-success mt-2" type="submit">Aceptar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

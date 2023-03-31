@@ -1,0 +1,69 @@
+<div class="row mt-3">
+  <div class="col-lg-4 offset-lg-4">
+    <div class="card mb-3" style="max-width: 30rem;">
+      <div class="card-header text-center fw-bold fs-5">{{ action }} Usuario</div>
+      <div class="card-body">
+        <app-spinner *ngIf="loading"></app-spinner>
+        <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Nombre</span>
+            <input type="text" class="form-control" formControlName="first_name">
+          </div>
+          <p *ngIf="this.form.get('first_name')?.errors?.['required'] && form.get('first_name')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un nombre
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Apellido</span>
+            <input type="text" class="form-control" formControlName="last_name">
+          </div>
+          <p *ngIf="this.form.get('last_name')?.errors?.['required'] && form.get('last_name')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un apellido
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Email</span>
+            <input type="email" class="form-control" formControlName="email">
+          </div>
+          <p *ngIf="this.form.get('email')?.errors?.['required'] && this.form.get('email')?.errors?.['email'] && form.get('email')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un Email
+          </p>
+
+          <div class="input-group mb-2" *ngIf="id === 0">
+            <span class="input-group-text" style="width: 30%;">Contraseña</span>
+            <input type="password" class="form-control" formControlName="password">
+          </div>
+          <p *ngIf="this.form.get('password')?.errors?.['required'] && form.get('password')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar una contraseña
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">Télefono</span>
+            <input type="number" class="form-control" formControlName="phone" maxlength="10"
+              oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+          </div>
+
+          <div class="mb-2 form-check form-check-reverse">
+            <input class="form-check-input" type="checkbox" formControlName="roleId">
+            <label class="form-check-label" style="font-size: 12px;">
+              ¿Es administrador?
+            </label>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-between m-2">
+            <div ngxTippy data-tippy-content="Volver atras" routerLink="/users">
+              <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+            </div>
+            <div>
+              <button [disabled]="form.invalid" class="btn btn-success mt-2" type="submit">Aceptar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

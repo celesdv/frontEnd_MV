@@ -1,0 +1,90 @@
+<div class="card m-3">
+  <div class="m-3">
+    <ul class="nav nav-tabs nav-fill">
+      <li class="nav-item">
+        <button class="nav-link" (click)="select('init')" id="inicio">Inicio</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" (click)="select('flight')" [disabled]="disable">Áereos</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" (click)="select('hotel')" [disabled]="disable">Hoteles</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" (click)="select('transfer')" [disabled]="disable">Traslados</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" (click)="select('assistance')" [disabled]="disable">Asistencias</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" (click)="select('excursion')" [disabled]="disable">Excursiones</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" (click)="select('canned')" [disabled]="disable">Enlatados</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" (click)="select('end')" [disabled]="disable">Finalizar</button>
+      </li>
+    </ul>
+  </div>
+  <div class="m-3">
+    <div *ngIf="item === 'init'">
+      <div class="row mt-3">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="card mb-3" style="max-width: 30rem;">
+            <div class="card-header text-center fw-bold fs-5">{{ action }} Prespuesto</div>
+            <div class="card-body">
+              <app-spinner *ngIf="loading"></app-spinner>
+              <form [formGroup]="form" (ngSubmit)="add()" *ngIf="!loading">
+
+                <div class="input-group mb-2" *ngIf="!orderId">
+                  <span class="input-group-text" style="width: 30%;">Pedido</span>
+                  <select class="form-select mb-2" formControlName="orderId">
+                    <option *ngFor="let c of orders; index as i;" value="{{c.id}}">{{c.name}} | {{c.destination}} | {{c.date}}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="input-group mb-2">
+                  <span class="input-group-text" style="width: 30%;">Detalle</span>
+                  <textarea class="form-control" formControlName="detail"></textarea>
+                </div>
+                <p style="font-size: 12px;">*Puede añadir: tipo de moneda y base en la cual se realiza</p>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-between m-2">
+                  <div ngxTippy data-tippy-content="Volver atras" routerLink="/budgets">
+                    <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+                  </div>
+                  <div>
+                    <button [disabled]="form.invalid" class="btn btn-success mt-2" type="submit">Aceptar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="item === 'flight'">
+      <app-form-flight></app-form-flight>
+    </div>
+    <div *ngIf="item === 'hotel'">
+      <app-form-hotel></app-form-hotel>
+    </div>
+    <div *ngIf="item === 'transfer'">
+      <app-form-transfer></app-form-transfer>
+    </div>
+    <div *ngIf="item === 'assistance'">
+      <app-form-assistance></app-form-assistance>
+    </div>
+    <div *ngIf="item === 'excursion'">
+      <app-form-excursion></app-form-excursion>
+    </div>
+    <div *ngIf="item === 'canned'">
+      <app-form-canned></app-form-canned>
+    </div>
+    <div *ngIf="item === 'end'">
+      fin
+    </div>
+  </div>
+</div>

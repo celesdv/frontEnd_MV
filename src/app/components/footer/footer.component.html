@@ -1,0 +1,17 @@
+<div class="bg-dark text-light p-2" data-bs-theme="dark">
+  <div class="container-fluid text-center" *ngIf="org">
+    <h5 class=" m-2">{{org.name}}</h5>
+    <p>{{org.about_us_text}}</p>
+    <div>
+      <p class="m-1"><i class="bi bi-geo-alt"></i> {{org.address}}</p>
+      <p class="m-1"><i class="bi bi-telephone"></i> {{org.phone_number}} - <i class="bi bi-envelope-at"></i> {{org.email}}</p>
+      <p class="m-1">
+        <a href="{{org.facebook_url}}" class="text-decoration-none text-reset"><i class="bi bi-facebook"></i>
+          Facebook</a>
+          -
+        <a href="{{org.facebook_url}}" class="text-decoration-none text-reset"><i class="bi bi-instagram"></i>
+          Instagram</a>
+      </p>
+    </div>
+  </div>
+</div>

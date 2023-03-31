@@ -1,0 +1,64 @@
+<div class="row mt-3">
+  <div class="col-lg-4 offset-lg-4">
+    <div class="card mb-3" style="max-width: 30rem;">
+      <div class="card-header text-center fw-bold fs-5">{{ action }} Cliente</div>
+      <div class="card-body">
+        <app-spinner *ngIf="loading"></app-spinner>
+        <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Nombre</span>
+            <input type="text" class="form-control" formControlName="first_name">
+          </div>
+          <p *ngIf="this.form.get('first_name')?.errors?.['required'] && form.get('first_name')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un nombre
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Apellido</span>
+            <input type="text" class="form-control" formControlName="last_name">
+          </div>
+          <p *ngIf="this.form.get('last_name')?.errors?.['required'] && form.get('last_name')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un apellido
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Email</span>
+            <input type="email" class="form-control" formControlName="email">
+          </div>
+          <p *ngIf="this.form.get('email')?.errors?.['email'] && form.get('email')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un apellido
+          </p>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">Domicilio</span>
+            <input type="text" class="form-control" formControlName="address">
+          </div>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">Télefono</span>
+            <input type="number" class="form-control" formControlName="phone" maxlength="10"
+              oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+          </div>
+
+          <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">CUIL</span>
+            <input type="number" class="form-control" formControlName="cuil" maxlength="11"
+              oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-between m-2">
+            <div ngxTippy data-tippy-content="Volver atras" routerLink="/clients">
+              <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+            </div>
+            <div>
+              <button [disabled]="form.invalid" class="btn btn-success mt-2" type="submit">Aceptar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
