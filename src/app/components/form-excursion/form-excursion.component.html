@@ -8,7 +8,7 @@
 
           <div class="input-group mb-2">
             <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Nombre</span>
-            <input type="text" class="form-control" formControlName="origin">
+            <input type="text" class="form-control" formControlName="name">
           </div>
           <p *ngIf="this.form.get('name')?.errors?.['required'] && form.get('name')?.touched"
             class="text-danger fw-semibold ms-2" style="font-size: 12px;">
