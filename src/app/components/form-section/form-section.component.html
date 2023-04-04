@@ -1,0 +1,54 @@
+<div *ngIf="!added">
+  <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+    <div class="input-group mb-2">
+      <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Tramo</span>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+    <p *ngIf="this.form.get('name')?.errors?.['required'] && form.get('name')?.touched"
+      class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+      Debe ingresar un tramo
+    </p>
+
+    <div class="input-group mb-2">
+      <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Salida</span>
+      <input type="number" class="form-control" formControlName="departure_day">
+      <span class="input-group-text" id="inputGroup-sizing-default">-</span>
+      <input type="number" class="form-control" formControlName="departure_month">
+      <span class="input-group-text" id="inputGroup-sizing-default">-</span>
+      <input type="number" class="form-control" formControlName="departure_year">
+      <span class="input-group-text" id="inputGroup-sizing-default">/</span>
+      <input type="number" class="form-control" formControlName="departure_hour">
+      <span class="input-group-text" id="inputGroup-sizing-default">:</span>
+      <input type="number" class="form-control" formControlName="departure_minute">
+    </div>
+
+    <div class="input-group mb-2">
+      <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Llegada</span>
+      <input type="number" class="form-control" formControlName="arrival_day">
+      <span class="input-group-text" id="inputGroup-sizing-default">-</span>
+      <input type="number" class="form-control" formControlName="arrival_month">
+      <span class="input-group-text" id="inputGroup-sizing-default">-</span>
+      <input type="number" class="form-control" formControlName="arrival_year">
+      <span class="input-group-text" id="inputGroup-sizing-default">/</span>
+      <input type="number" class="form-control" formControlName="arrival_hour">
+      <span class="input-group-text" id="inputGroup-sizing-default">:</span>
+      <input type="number" class="form-control" formControlName="arrival_minute">
+    </div>
+
+    <div class="input-group mb-2">
+      <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Compañia</span>
+      <input type="text" class="form-control" formControlName="company">
+    </div>
+   
+    <div class="input-group mb-2">
+      <span class="input-group-text" style="width: 30%;">Detalles</span>
+      <textarea class="form-control" formControlName="detail"></textarea>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
+      <div>
+        <button [disabled]="form.invalid" class="btn btn-info text-light mt-2" type="submit">Añadir</button>
+      </div>
+    </div>
+  </form>
+</div>

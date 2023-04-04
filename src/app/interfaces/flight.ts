@@ -1,3 +1,5 @@
+import { Section } from "./section";
+
 export interface Flight {
   id?: number;
   origin: string;
@@ -8,4 +10,6 @@ export interface Flight {
   tax: number;
   detail: string;
   budgetId: number;
+  supplierId: number;
+  section: Section[];
 }

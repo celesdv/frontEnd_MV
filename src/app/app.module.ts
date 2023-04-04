@@ -34,6 +34,7 @@ import { FormTransferComponent } from './components/form-transfer/form-transfer.
 import { FormExcursionComponent } from './components/form-excursion/form-excursion.component';
 import { FormCannedComponent } from './components/form-canned/form-canned.component';
 import { FormAssistanceComponent } from './components/form-assistance/form-assistance.component';
+import { FormSectionComponent } from './components/form-section/form-section.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { FormAssistanceComponent } from './components/form-assistance/form-assis
     FormExcursionComponent,
     FormCannedComponent,
     FormAssistanceComponent,
+    FormSectionComponent,
   ],
   imports: [
     BrowserModule,
