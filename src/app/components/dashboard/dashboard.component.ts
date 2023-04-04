@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from 'src/app/service/order.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +11,10 @@ export class DashboardComponent implements OnInit {
   token = localStorage.getItem('token');
   user: any;
 
-  constructor() {}
+  constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
+    this.orderService.setId(0)
     this.isAdmin();
   }
 

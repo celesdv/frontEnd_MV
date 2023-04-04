@@ -42,6 +42,7 @@ export class AddBudgetComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.orderId)
     if (this.id != 0) {
       this.disable = false;
       this.action = 'Editar ';
@@ -135,5 +136,10 @@ export class AddBudgetComponent implements OnInit {
         })
       }
     }
+  }
+
+  goBack(){
+    this.orderService.setId(0)
+    this.router.navigateByUrl(`budgets`);
   }
 }
