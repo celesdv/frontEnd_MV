@@ -34,6 +34,7 @@ export class BudgetComponent implements OnInit {
       next: (data: any[]) => {
         this.budgets = data;
         this.loading = false;
+        console.log(this.budgets)
       },
       error: (e: HttpErrorResponse) => {
         this.errorService.msjError(e);

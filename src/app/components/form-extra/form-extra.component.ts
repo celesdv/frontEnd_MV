@@ -1,28 +1,26 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Hotel } from 'src/app/interfaces/hotel';
+import { Extra } from 'src/app/interfaces/extras';
 
 @Component({
-  selector: 'app-form-hotel',
-  templateUrl: './form-hotel.component.html',
-  styleUrls: ['./form-hotel.component.css'],
+  selector: 'app-form-extra',
+  templateUrl: './form-extra.component.html',
+  styleUrls: ['./form-extra.component.css']
 })
-export class FormHotelComponent implements OnInit {
+export class FormExtraComponent implements OnInit {
   @Input() index!: number;
-  @Output() newHotelEvent = new EventEmitter<Hotel>();
+  @Output() newExtraEvent = new EventEmitter<Extra>();
   added: boolean = false;
   loading: boolean = false;
   form: FormGroup;
   action: string = 'Agregar ';
-  hotel!: Hotel;
+  extra!: Extra;
 
   constructor(
     private formBuilder: FormBuilder,
   ) {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
-      regime: [''],
-      nights: [, [Validators.required]],
       detail: [''],
     });
   }
@@ -32,22 +30,18 @@ export class FormHotelComponent implements OnInit {
   edit() {
     this.added = false;
     this.form.setValue({
-      name: this.hotel.name,
-      regime: this.hotel.regime,
-      nights: this.hotel.nights,
-      detail: this.hotel.detail,
+      name: this.extra.name,
+      detail: this.extra.detail,
     })
     this.action = 'Editar'
   }
 
   accept() {
-    this.hotel = {
+    this.extra = {
       name: this.form.value.name,
-      regime: this.form.value.regime,
-      nights: this.form.value.nights,
       detail: this.form.value.detail,
     };
-    this.newHotelEvent.emit(this.hotel);
+    this.newExtraEvent.emit(this.extra);
     this.added = true;
   }
 }

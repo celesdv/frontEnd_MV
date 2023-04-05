@@ -42,21 +42,37 @@ export class FormSectionComponent implements OnInit {
 
   edit() {
     this.added = false;
+    this.form.setValue({
+      name: this.section.name,
+      departure_hour: this.section.calendar_origin.substring(11,13),
+      departure_minute: this.section.calendar_origin.substring(14,16),
+      departure_day: this.section.calendar_origin.substring(8,10),
+      departure_month: this.section.calendar_origin.substring(5,7),
+      departure_year: this.section.calendar_origin.substring(0,4),
+      arrival_hour: this.section.calendar_destination.substring(11,13),
+      arrival_minute: this.section.calendar_destination.substring(14,16),
+      arrival_day: this.section.calendar_destination.substring(8,10),
+      arrival_month: this.section.calendar_destination.substring(5,7),
+      arrival_year: this.section.calendar_destination.substring(0,4),
+      company: this.section.company,
+      detail: this.section.detail,
+    })
+    this.action = 'Editar'
   }
 
-  accept() {
+  accept() {   
     let origin = new Date(
       this.form.value.departure_year,
       this.form.value.departure_month - 1,
       this.form.value.departure_day,
-      this.form.value.departure_hour,
+      this.form.value.departure_hour-3,
       this.form.value.departure_minute
     ).toISOString();
     let destination = new Date(
       this.form.value.arrival_year,
       this.form.value.arrival_month - 1,
       this.form.value.arrival_day,
-      this.form.value.arrival_hour,
+      this.form.value.arrival_hour-3,
       this.form.value.arrival_minute
     ).toISOString();
     this.section = {
@@ -66,7 +82,6 @@ export class FormSectionComponent implements OnInit {
       calendar_destination: destination,
       detail: this.form.value.detail,
     };
-
     this.newSectionEvent.emit(this.section);
     this.added = true;
   }

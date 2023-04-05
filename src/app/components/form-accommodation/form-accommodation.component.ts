@@ -1,27 +1,30 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Section } from 'src/app/interfaces/section';
+import { Extra } from 'src/app/interfaces/extras';
+import { Hotel } from 'src/app/interfaces/hotel';
 import { Supplier } from 'src/app/interfaces/supplier';
 import { BudgetService } from 'src/app/service/budget.service';
 import { ErrorService } from 'src/app/service/error.service';
 import { SupplierService } from 'src/app/service/supplier.service';
 
 @Component({
-  selector: 'app-form-flight',
-  templateUrl: './form-flight.component.html',
-  styleUrls: ['./form-flight.component.css'],
+  selector: 'app-form-accommodation',
+  templateUrl: './form-accommodation.component.html',
+  styleUrls: ['./form-accommodation.component.css'],
 })
-export class FormFlightComponent implements OnInit {
+export class FormAccommodationComponent implements OnInit {
   loading: boolean = false;
   form: FormGroup;
   id?: number;
   action: string = 'Agregar ';
   suppliers: Supplier[] = [];
-  sections: Section[] = [];
-  newI: number[] = []
+  newH: number[] = [];
+  newE: number[] = [];
+  hotels: Hotel[] = [];
+  extras: Extra[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,24 +32,22 @@ export class FormFlightComponent implements OnInit {
     private router: Router,
     private errorService: ErrorService,
     private budgetService: BudgetService,
-    private supplierService: SupplierService,
+    private supplierService: SupplierService
   ) {
     this.form = this.formBuilder.group({
-      origin: ['', [Validators.required]],
-      destination: ['', [Validators.required]],
-      date: [''],
-      baggage: [''],
+      name: ['', [Validators.required]],
+      nights: [, [Validators.required]],
       value: [, [Validators.required]],
       tax: [],
       detail: [''],
-      supplierId: [, [Validators.required]],
+      supplierId: [, Validators.required],
     });
     this.id = budgetService.getId();
   }
 
   ngOnInit(): void {
     this.getSuppliers();
-    console.log(this.id);    
+    console.log(this.id);
   }
 
   getSuppliers() {
@@ -62,13 +63,20 @@ export class FormFlightComponent implements OnInit {
     });
   }
 
-  addSection() {
-    this.newI.push(0)
+  addHotel() {
+    this.newH.push(0);
   }
 
-  addNewSection(section:Section, index:number) {
-    this.sections.splice(index, 1, section);
-    console.log(this.sections)
+  addNewHotel(hotel: Hotel, index: number) {
+    this.hotels.splice(index, 1, hotel);
+  }
+
+  addExtra() {
+    this.newE.push(0);
+  }
+
+  addNewExtra(extra: Extra, index: number) {
+    this.extras.splice(index, 1, extra);
   }
 
   accept() {}

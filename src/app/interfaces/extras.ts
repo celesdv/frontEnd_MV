@@ -1,8 +1,6 @@
-export interface Hotel {
+export interface Extra {
   id?: number;
   name: string;
-  regime: string;
-  nights: number;
   detail: string;
   accommodationId?: number;
 }

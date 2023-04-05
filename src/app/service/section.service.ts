@@ -16,7 +16,7 @@ export class SectionService {
     this.api = 'api/sections/';
   }
 
-  getFlight(): Observable<Section[]> {
+  getSection(): Observable<Section[]> {
     return this.http.get<Section[]>(`${this.url}${this.api}`);
   }
 
@@ -24,15 +24,15 @@ export class SectionService {
     return this.http.get<Section>(`${this.url}${this.api}${id}`);
   }
 
-  addFlight(section: Section): Observable<Section> {
+  addSection(section: Section): Observable<Section> {
     return this.http.post<Section>(`${this.url}${this.api}`, section);
   }
 
-  updateFlight(section: Section): Observable<void> {
+  updateSection(section: Section): Observable<void> {
     return this.http.put<void>(`${this.url}${this.api}${section.id}`, section);
   }
 
-  deleteFlight(id: number): Observable<void> {
+  deleteSection(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}${this.api}${id}`);
   }
 }

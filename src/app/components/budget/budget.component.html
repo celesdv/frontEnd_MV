@@ -34,23 +34,27 @@
             <p>Pasajeros: {{c.order.toddler + c.order.child + c.order.adult + c.order.teen + c.order.senior}}</p>
           </td>
           <td class="align-middle">
-            <p *ngIf="c.flights.length > 0">Aereos: {{c.flights.length}} <span *ngFor="let i of c.flights">| {{i.origin
-                }} / {{i.destination}}</span></p>
-            <p *ngIf="c.hotels.length > 0">Hoteles: {{c.hotels.length}} <span *ngFor="let i of c.hotels">|
-                {{i.name}}</span></p>
-            <p *ngIf="c.transfers.length > 0">Traslados: {{c.transfers.length}} <span *ngFor="let i of c.transfers">|
+            <p *ngIf="c.flights">Aereos: <span *ngFor="let i of c.flights">
                 {{i.origin
-                }} / {{i.destination}}</span></p>
-            <p *ngIf="c.excursions.length > 0">Excursiones: {{c.excursions.length}} <span
-                *ngFor="let i of c.excursions">|
-                {{i.name}}</span></p>
-            <p *ngIf="c.assistance.length > 0">Asistencias: {{c.assistance.length}} <span *ngFor="let i of c.assistance">|
-              {{i.name}}</span></p>
-            <p *ngIf="c.canneds.length > 0">Enlatados: {{c.canneds.length}} <span *ngFor="let i of c.canneds">|
-              {{i.name}}</span></p>
+                }} / {{i.destination}} | </span></p>
+            <p *ngIf="c.hotels">Hoteles: <span *ngFor="let i of c.hotels">
+                {{i.name}} | </span></p>
+            <p *ngIf="c.transfers">Traslados: <span *ngFor="let i of c.transfers">
+                {{i.origin
+                }} / {{i.destination}} | </span></p>
+            <p *ngIf="c.excursions">Excursiones: <span *ngFor="let i of c.excursions">
+                {{i.name}} | </span></p>
+            <p *ngIf="c.assistance">Asistencias: <span *ngFor="let i of c.assistance">
+                {{i.name}} | </span></p>
+            <p *ngIf="c.canneds">Enlatados: <span *ngFor="let i of c.canneds">
+                {{i.name}} | </span></p>
           </td>
-          <td class="align-middle">{{c.detail}}</td>
-          <td class="align-middle">$ {{c.value}}</td>
+          <td class="align-middle">
+            <p>{{c.detail}}</p>
+          </td>
+          <td class="align-middle">
+            <p>$ {{c.value}}</p>
+          </td>
           <td class="align-middle">
             <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
               data-tippy-content="Editar" (click)="editBudget(c.id, c.orderId)">
