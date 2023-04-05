@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as moment from 'moment';
 import { Section } from 'src/app/interfaces/section';
+import { SectionService } from 'src/app/service/section.service';
 
 @Component({
   selector: 'app-form-section',
@@ -9,14 +9,18 @@ import { Section } from 'src/app/interfaces/section';
   styleUrls: ['./form-section.component.css'],
 })
 export class FormSectionComponent implements OnInit {
- 
+  @Input() index!: number;
   @Output() newSectionEvent = new EventEmitter<Section>();
   added: boolean = false;
   loading: boolean = false;
   form: FormGroup;
-  section!:Section
+  section!: Section;
+  action: string = 'Agregar ';
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private sectionService: SectionService
+  ) {
     this.form = formBuilder.group({
       name: ['', Validators.required],
       departure_hour: [null, Validators.required],
@@ -36,20 +40,24 @@ export class FormSectionComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  edit() {
+    this.added = false;
+  }
+
   accept() {
     let origin = new Date(
       this.form.value.departure_year,
       this.form.value.departure_month - 1,
       this.form.value.departure_day,
       this.form.value.departure_hour,
-      this.form.value.departure_minute,
+      this.form.value.departure_minute
     ).toISOString();
     let destination = new Date(
       this.form.value.arrival_year,
       this.form.value.arrival_month - 1,
       this.form.value.arrival_day,
       this.form.value.arrival_hour,
-      this.form.value.arrival_minute,
+      this.form.value.arrival_minute
     ).toISOString();
     this.section = {
       name: this.form.value.name,
@@ -59,8 +67,7 @@ export class FormSectionComponent implements OnInit {
       detail: this.form.value.detail,
     };
 
-    console.log(this.section)
-    this.newSectionEvent.emit(this.section)
-    this.added = true
+    this.newSectionEvent.emit(this.section);
+    this.added = true;
   }
 }

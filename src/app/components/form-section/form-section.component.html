@@ -1,3 +1,9 @@
+<div *ngIf="added" class="d-md-flex justify-content-between">
+  <p><span>Tramo {{index+1}}: {{section.name}}</span><span *ngIf="section.company"> | Compañia: {{section.company}}</span></p>
+  <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" (click)="edit()">
+    <i class="bi bi-pencil-fill" style="color: white;"></i>
+  </div>
+</div>
 <div *ngIf="!added">
   <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
     <div class="input-group mb-2">
@@ -39,7 +45,7 @@
       <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Compañia</span>
       <input type="text" class="form-control" formControlName="company">
     </div>
-   
+
     <div class="input-group mb-2">
       <span class="input-group-text" style="width: 30%;">Detalles</span>
       <textarea class="form-control" formControlName="detail"></textarea>
@@ -47,7 +53,7 @@
 
     <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
       <div>
-        <button [disabled]="form.invalid" class="btn btn-info text-light mt-2" type="submit">Añadir</button>
+        <button [disabled]="form.invalid" class="btn btn-info text-light mt-2" type="submit">{{action}}</button>
       </div>
     </div>
   </form>
