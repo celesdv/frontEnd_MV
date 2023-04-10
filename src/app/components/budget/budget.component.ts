@@ -14,7 +14,7 @@ import { OrderService } from 'src/app/service/order.service';
 })
 export class BudgetComponent implements OnInit {
   loading = true;
-  budgets: any[] = [];
+  budgets: Budget[] = [];
   url: any;
 
   constructor(

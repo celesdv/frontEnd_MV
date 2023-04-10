@@ -24,6 +24,10 @@ export class FlightService {
     return this.http.get<Flight>(`${this.url}${this.api}${id}`);
   }
 
+  getByBudget(id: number): Observable<Flight> {
+    return this.http.get<Flight>(`${this.url}${this.api}budget/${id}`);
+  }
+
   addFlight(flight: Flight): Observable<Flight> {
     return this.http.post<Flight>(`${this.url}${this.api}`, flight);
   }

@@ -1,4 +1,4 @@
-export interface Transfer {
+export interface Assistance {
   id?: number;
   name: string,
   type: string,

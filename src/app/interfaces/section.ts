@@ -5,4 +5,5 @@ export interface Section {
     calendar_destination: string,
     company: string,
     detail: string,
+    flightId?: number
 }

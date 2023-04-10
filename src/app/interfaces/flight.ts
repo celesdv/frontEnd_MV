@@ -1,4 +1,5 @@
 import { Section } from "./section";
+import { Supplier } from "./supplier";
 
 export interface Flight {
   id?: number;
@@ -11,5 +12,6 @@ export interface Flight {
   detail: string;
   budgetId: number;
   supplierId: number;
-  section: Section[];
+  sections: Section[];
+  supplier?: Supplier
 }

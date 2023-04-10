@@ -26,38 +26,46 @@
       </thead>
       <tbody class="table-group-divider">
         <tr *ngFor="let c of budgets; index as i;">
-          <td class="align-middle">{{c.order.name}}</td>
+          <td class="align-middle">{{c.order?.name}}</td>
           <td class="align-middle">
-            <p>Destino: {{c.order.destination}}</p>
-            <p>Fecha:{{c.order.date}}</p>
-            <p>Noches: {{c.order.nights}}</p>
-            <p>Pasajeros: {{c.order.toddler + c.order.child + c.order.adult + c.order.teen + c.order.senior}}</p>
+            <div *ngIf="c.order">
+              <p>
+                {{c.order.destination}} - {{c.order.date}}
+              </p>
+              <p>
+                {{c.order.nights}}nts -
+                {{c.order.toddler + c.order.child + c.order.adult + c.order.teen + c.order.senior}}pax
+              </p>
+            </div>
           </td>
           <td class="align-middle">
-            <p *ngIf="c.flights">Aereos: <span *ngFor="let i of c.flights">
-                {{i.origin
-                }} / {{i.destination}} | </span></p>
-            <p *ngIf="c.hotels">Hoteles: <span *ngFor="let i of c.hotels">
-                {{i.name}} | </span></p>
-            <p *ngIf="c.transfers">Traslados: <span *ngFor="let i of c.transfers">
-                {{i.origin
-                }} / {{i.destination}} | </span></p>
-            <p *ngIf="c.excursions">Excursiones: <span *ngFor="let i of c.excursions">
-                {{i.name}} | </span></p>
-            <p *ngIf="c.assistance">Asistencias: <span *ngFor="let i of c.assistance">
-                {{i.name}} | </span></p>
-            <p *ngIf="c.canneds">Enlatados: <span *ngFor="let i of c.canneds">
-                {{i.name}} | </span></p>
+            <p *ngIf="c.flights && c.flights.length > 0">
+              Aereos: <span *ngFor="let i of c.flights">{{i.origin}} / {{i.destination}} | </span>
+            </p>
+            <p *ngIf="c.hotels && c.hotels.length > 0">
+              Hoteles: <span *ngFor="let i of c.hotels">{{i.name}} | </span>
+            </p>
+            <p *ngIf="c.transfers && c.transfers.length > 0">
+              Traslados: <span *ngFor="let i of c.transfers">{{i.origin}} / {{i.destination}} | </span>
+            </p>
+            <p *ngIf="c.excursions && c.excursions.length > 0">
+              Excursiones: <span *ngFor="let i of c.excursions">{{i.name}} | </span>
+            </p>
+            <p *ngIf="c.assistances && c.assistances.length > 0">
+              Asistencias: <span *ngFor="let i of c.assistances">{{i.name}} | </span>
+            </p>
+            <!-- <p>Enlatados: <span *ngFor="let i of c.canneds">
+                {{i.name}} | </span></p> -->
           </td>
           <td class="align-middle">
             <p>{{c.detail}}</p>
           </td>
           <td class="align-middle">
-            <p>$ {{c.value}}</p>
+            <p>$ {{c.total? c.total : 00}} </p>
           </td>
           <td class="align-middle">
             <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
-              data-tippy-content="Editar" (click)="editBudget(c.id, c.orderId)">
+              data-tippy-content="Editar" (click)="editBudget(c.id!, c.orderId!)">
               <i class="bi bi-pencil-fill" style="color: white;"></i>
             </div>
             <div class="p-2 bg-danger text-center rounded-circle mt-2" style="width: 2.5rem;" ngxTippy

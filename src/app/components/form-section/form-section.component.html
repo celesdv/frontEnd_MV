@@ -1,4 +1,4 @@
-<div *ngIf="added" class="d-md-flex justify-content-between">
+<div *ngIf="added" class="d-md-flex justify-content-between mb-2">
   <p><span>Tramo {{index+1}}: {{section.name}}</span><span *ngIf="section.company"> | Compañia:
       {{section.company}}</span></p>
   <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" (click)="edit()">
@@ -18,36 +18,28 @@
 
     <div class="input-group mb-2">
       <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Salida</span>
-      <input type="number" class="form-control" formControlName="departure_day" min="1" max="31"
-      oninput="if(this.value > this.max) this.value = 31; if(this.value < this.min) this.value = 1;">
+      <input type="number" class="form-control" formControlName="departure_day" min="0" max="31">
       <span class="input-group-text" id="inputGroup-sizing-default">-</span>
-      <input type="number" class="form-control" formControlName="departure_month" min="1" max="12"
-      oninput="if(this.value > this.max) this.value = 12; if(this.value < this.min) this.value = 1;">
+      <input type="number" class="form-control" formControlName="departure_month" min="1" max="12">
       <span class="input-group-text" id="inputGroup-sizing-default">-</span>
       <input type="number" class="form-control" formControlName="departure_year">
       <span class="input-group-text" id="inputGroup-sizing-default">/</span>
-      <input type="number" class="form-control" formControlName="departure_hour" min="0" max="23"
-      oninput="if(this.value > this.max) this.value = 23; if(this.value < this.min) this.value = 0;">
+      <input type="number" class="form-control" formControlName="departure_hour" min="0" max="23">
       <span class="input-group-text" id="inputGroup-sizing-default">:</span>
-      <input type="number" class="form-control" formControlName="departure_minute" min="0" max="59"
-      oninput="if(this.value > this.max) this.value = 59; if(this.value < this.min) this.value = 0;">
+      <input type="number" class="form-control" formControlName="departure_minute" min="0" max="59">
     </div>
 
     <div class="input-group mb-2">
       <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Llegada</span>
-      <input type="number" class="form-control" formControlName="arrival_day" min="1" max="31"
-        oninput="if(this.value > this.max) this.value = 31; if(this.value < this.min) this.value = 1;">
+      <input type="number" class="form-control" formControlName="arrival_day" min="1" max="31">
       <span class="input-group-text" id="inputGroup-sizing-default">-</span>
-      <input type="number" class="form-control" formControlName="arrival_month" min="1" max="12"
-      oninput="if(this.value > this.max) this.value = 12; if(this.value < this.min) this.value = 1;">
+      <input type="number" class="form-control" formControlName="arrival_month" min="1" max="12">
       <span class="input-group-text" id="inputGroup-sizing-default">-</span>
       <input type="number" class="form-control" formControlName="arrival_year">
       <span class="input-group-text" id="inputGroup-sizing-default">/</span>
-      <input type="number" class="form-control" formControlName="arrival_hour" min="0" max="23"
-      oninput="if(this.value > this.max) this.value = 23; if(this.value < this.min) this.value = 0;">
+      <input type="number" class="form-control" formControlName="arrival_hour" min="0" max="23">
       <span class="input-group-text" id="inputGroup-sizing-default">:</span>
-      <input type="number" class="form-control" formControlName="arrival_minute" min="0" max="59"
-      oninput="if(this.value > this.max) this.value = 59; if(this.value < this.min) this.value = 0;">
+      <input type="number" class="form-control" formControlName="arrival_minute" min="0" max="59">
     </div>
 
     <div class="input-group mb-2">

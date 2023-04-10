@@ -46,6 +46,7 @@ export class AddBudgetComponent implements OnInit {
     if (this.id != 0) {
       this.disable = false;
       this.action = 'Editar ';
+      this.budgetService.setId(this.id)
       this.getBudget(this.id);
     } else {
       this.getOrders();

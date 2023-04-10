@@ -15,6 +15,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './utils/auth.guard';
+import { AdminGuard } from './utils/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,15 +24,15 @@ const routes: Routes = [
   { path: 'clients', component: ClientsComponent, canActivate: [AuthGuard] },
   { path: 'clients/form', component: FormClientComponent, canActivate: [AuthGuard] },
   { path: 'clients/form/:id', component: FormClientComponent, canActivate: [AuthGuard] },
-  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
-  { path: 'users/form', component: FormUserComponent, canActivate: [AuthGuard] },
-  { path: 'users/form/:id', component: FormUserComponent, canActivate: [AuthGuard] },
-  { path: 'counts', component: CountsComponent, canActivate: [AuthGuard] },
-  { path: 'counts/form', component: FormCountComponent, canActivate: [AuthGuard] },
-  { path: 'counts/form/:id', component: FormCountComponent, canActivate: [AuthGuard] },
-  { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard] },
-  { path: 'suppliers/form', component: FormSupplierComponent, canActivate: [AuthGuard] },
-  { path: 'suppliers/form/:id', component: FormSupplierComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'users/form', component: FormUserComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'users/form/:id', component: FormUserComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'counts', component: CountsComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'counts/form', component: FormCountComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'counts/form/:id', component: FormCountComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'suppliers', component: SuppliersComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'suppliers/form', component: FormSupplierComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'suppliers/form/:id', component: FormSupplierComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
   { path: 'orders/form', component: FormOrderComponent, canActivate: [AuthGuard] },
   { path: 'orders/form/:id', component: FormOrderComponent, canActivate: [AuthGuard] },

@@ -7,11 +7,12 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(
@@ -23,7 +24,14 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const token = localStorage.getItem('token');
-    if (token == undefined) {
+    if (token) {
+      const decoded:any = jwtDecode(token);
+      const role = decoded.roleId
+      if (role != 1) {
+        this.router.navigate(['/dashboard']);
+        return false;
+      }
+    } else {
       this.router.navigate(['/login']);
       return false;
     }

@@ -37,6 +37,7 @@ import { FormAssistanceComponent } from './components/form-assistance/form-assis
 import { FormSectionComponent } from './components/form-section/form-section.component';
 import { FormAccommodationComponent } from './components/form-accommodation/form-accommodation.component';
 import { FormExtraComponent } from './components/form-extra/form-extra.component';
+import { FlightsComponent } from './components/flights/flights.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { FormExtraComponent } from './components/form-extra/form-extra.component
     FormSectionComponent,
     FormAccommodationComponent,
     FormExtraComponent,
+    FlightsComponent,
   ],
   imports: [
     BrowserModule,

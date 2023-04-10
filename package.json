@@ -20,6 +20,7 @@
     "@angular/router": "^15.2.0",
     "bootstrap": "^5.3.0-alpha1",
     "bootstrap-icons": "^1.10.3",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "ngx-tippy-wrapper": "^6.1.0",
     "ngx-toastr": "^16.1.0",

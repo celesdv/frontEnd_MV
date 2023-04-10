@@ -29,6 +29,7 @@ export class SectionService {
   }
 
   updateSection(section: Section): Observable<void> {
+    console.log(section.id)
     return this.http.put<void>(`${this.url}${this.api}${section.id}`, section);
   }
 
