@@ -38,6 +38,7 @@ import { FormSectionComponent } from './components/form-section/form-section.com
 import { FormAccommodationComponent } from './components/form-accommodation/form-accommodation.component';
 import { FormExtraComponent } from './components/form-extra/form-extra.component';
 import { FlightsComponent } from './components/flights/flights.component';
+import { TransfersComponent } from './components/transfers/transfers.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { FlightsComponent } from './components/flights/flights.component';
     FormAccommodationComponent,
     FormExtraComponent,
     FlightsComponent,
+    TransfersComponent,
   ],
   imports: [
     BrowserModule,

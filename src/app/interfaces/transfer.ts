@@ -1,3 +1,5 @@
+import { Supplier } from "./supplier";
+
 export interface Transfer {
   id?: number;
   origin: string,
@@ -8,4 +10,6 @@ export interface Transfer {
   tax: number;
   detail: string;
   budgetId: number;
+  supplierId: number;
+  supplier?: Supplier
 }

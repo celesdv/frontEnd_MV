@@ -81,4 +81,7 @@
     </div>
   </div>
 </div>
-<app-flights (newFlightEvent)="editFlight($event)"></app-flights>
+<div *ngIf="show && !loading">
+  <app-flights (newFlightEvent)="editFlight($event)"></app-flights>
+</div>
+

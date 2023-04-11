@@ -1,61 +1,61 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Flight } from 'src/app/interfaces/flight';
+import { Transfer } from 'src/app/interfaces/transfer';
 import { BudgetService } from 'src/app/service/budget.service';
 import { ErrorService } from 'src/app/service/error.service';
-import { FlightService } from 'src/app/service/flight.service';
+import { TransferService } from 'src/app/service/transfer.service';
 
 @Component({
-  selector: 'app-flights',
-  templateUrl: './flights.component.html',
-  styleUrls: ['./flights.component.css'],
+  selector: 'app-transfers',
+  templateUrl: './transfers.component.html',
+  styleUrls: ['./transfers.component.css']
 })
-export class FlightsComponent implements OnInit {
-  @Output() newFlightEvent = new EventEmitter<number>();
+export class TransfersComponent implements OnInit {
+  @Output() newTransferEvent = new EventEmitter<number>();
   budgetId: number;
   loading = true;
-  flights: Flight[] = [];
+  transfers: Transfer[] = [];
 
   constructor(
     private errorService: ErrorService,
     private toastr: ToastrService,
-    private fligthService: FlightService,
-    private budgetService: BudgetService
+    private budgetService: BudgetService,
+    private transferService: TransferService
   ) {
     this.budgetId = budgetService.getId()
   }
 
   ngOnInit(): void {
     if(this.budgetId){
-      this.getFligths();
+      this.getTransfers();
     }
   }
 
-  getFligths() {
-    this.fligthService.getByBudget(this.budgetId).subscribe({
-      next: (data: any) => {
-        this.flights = data;
+  getTransfers() {
+    this.transferService.getByBudget(this.budgetId).subscribe({
+      next: (data: Transfer[]) => {
+        this.transfers = data;
         this.loading = false;
-        console.log(this.flights)
       },
       error: (e: HttpErrorResponse) => {
         this.errorService.msjError(e);
         this.loading = false;
       },
     });
+
   }
 
-  editFlight(id: number) {
-    this.newFlightEvent.emit(id);
+  editTransfer(id: number) {
+    this.newTransferEvent.emit(id);
   }
 
-  deleteFlight(id: number) {
+  deleteTransfer(id: number) {
     this.loading = true;
-    this.fligthService.deleteFlight(id).subscribe({
+    this.transferService.deleteTransfer(id).subscribe({
       next: () => {
         this.toastr.info('Registro Eliminado', 'Exito');
-        this.getFligths()
+        this.getTransfers()
       },
       error: (e: HttpErrorResponse) => {
         this.errorService.msjError(e);

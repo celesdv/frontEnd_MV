@@ -105,6 +105,8 @@ export class FormSectionComponent implements OnInit {
             'Tramo editado'
           );
           this.loading = false;
+          this.added = true;
+          this.newSectionEvent.emit(this.section);
         },
         error: (e: HttpErrorResponse) => {
           this.errorService.msjError(e);
@@ -122,6 +124,7 @@ export class FormSectionComponent implements OnInit {
             );
             this.loading = false;
             this.added = true;
+            this.newSectionEvent.emit(this.section);
           },
           error: (e: HttpErrorResponse) => {
             this.errorService.msjError(e);

@@ -25,6 +25,7 @@ export class FormFlightComponent implements OnInit {
   sections: Section[] = [];
   newI: number[] = [];
   id: number = 0;
+  show: boolean = true
 
   constructor(
     private formBuilder: FormBuilder,
@@ -77,6 +78,7 @@ export class FormFlightComponent implements OnInit {
     this.id = id;
     this.getFlight(this.id);
     this.action = "Editar "
+    this.show = false;
   }
 
   getFlight(id: number) {
@@ -138,6 +140,7 @@ export class FormFlightComponent implements OnInit {
             this.loading = false;
           },
         });
+        this.show = true;
       } else {
         this.flightService.addFlight(fligth).subscribe({
           next: () => {
