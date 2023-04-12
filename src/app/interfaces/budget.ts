@@ -13,7 +13,7 @@ export interface Budget {
   flights?: Flight[];
   hotels?: Hotel[];
   excursions?: Excursion[];
-  assistances?: Assistance[];
+  assistance?: Assistance[];
   transfers?: Transfer[];
   order?:Order
 }

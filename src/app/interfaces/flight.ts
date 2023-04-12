@@ -1,5 +1,5 @@
-import { Section } from "./section";
-import { Supplier } from "./supplier";
+import { Section } from './section';
+import { Supplier } from './supplier';
 
 export interface Flight {
   id?: number;
@@ -13,5 +13,6 @@ export interface Flight {
   budgetId: number;
   supplierId: number;
   sections: Section[];
-  supplier?: Supplier
+  supplier?: Supplier;
+  soft_delete?: boolean;
 }

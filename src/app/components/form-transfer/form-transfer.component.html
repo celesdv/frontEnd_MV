@@ -63,6 +63,10 @@
               <option *ngFor="let c of suppliers ; index as i;" value="{{c.id}}">{{c.name}}</option>
             </select>
           </div>
+          <p *ngIf="this.form.get('supplierId')?.errors?.['required'] && form.get('supplierId')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe seleccionar el proveedor
+          </p>
 
           <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
             <div>

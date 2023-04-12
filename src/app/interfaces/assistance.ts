@@ -10,4 +10,5 @@ export interface Assistance {
   budgetId: number;
   supplierId: number;
   supplier?: Supplier;
+  soft_delete?: boolean;
 }

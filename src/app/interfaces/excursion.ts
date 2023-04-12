@@ -1,3 +1,5 @@
+import { Supplier } from "./supplier";
+
 export interface Excursion {
   id?: number;
   name: string;
@@ -6,4 +8,7 @@ export interface Excursion {
   tax: number;
   detail: string;
   budgetId: number;
+  supplierId: number;
+  supplier?: Supplier;
+  soft_delete?: boolean;
 }
