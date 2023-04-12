@@ -1,0 +1,35 @@
+<div class="card m-3">
+    <div class="card-body">
+        <h5 class="card-title">Listado de Items Extras</h5>
+        <table class="table" *ngIf="!loading">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Proveedor</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let c of items; index as i;">
+                    <td class="align-middle">{{c.name}}</td>
+                    <td class="align-middle">{{c.type}}</td>
+                    <td class="align-middle">$ {{c.value + c.tax}} </td>
+                    <td class="align-middle"><span *ngIf="c.supplier">{{c.supplier.name}}</span></td>
+                    <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                            data-tippy-content="Editar" (click)="editItem(c.id!)">
+                            <i class="bi bi-pencil-fill" style="color: white;"></i>
+                        </div>
+                        <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                            data-tippy-content="Eliminar" (click)="deleteItem(c.id!)">
+                            <i class="bi bi-trash3-fill" style="color: white;"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <app-spinner *ngIf="loading"></app-spinner>
+    </div>
+</div>

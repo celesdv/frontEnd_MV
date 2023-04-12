@@ -3,6 +3,7 @@ import { Canned } from "./canned";
 import { Excursion } from "./excursion";
 import { Flight } from "./flight";
 import { Hotel } from "./hotel";
+import { Item } from "./item";
 import { Order } from "./order";
 import { Transfer } from "./transfer";
 
@@ -17,5 +18,6 @@ export interface Budget {
   assistance?: Assistance[];
   transfers?: Transfer[];
   canneds?: Canned[];
+  items?: Item[];
   order?:Order
 }

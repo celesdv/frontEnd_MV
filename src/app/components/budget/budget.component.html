@@ -76,6 +76,12 @@
                 <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
               </span>
             </p>
+            <p *ngIf="c.items && c.items.length > 0">
+              Items Extras:
+              <span *ngFor="let i of c.items">
+                <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
+              </span>
+            </p>
           </td>
           <td class="align-middle">
             <p>{{c.detail}}</p>
