@@ -43,6 +43,17 @@
             <textarea class="form-control" formControlName="detail"></textarea>
           </div>
 
+          <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%; height: 100%;">Proveedores</span>
+            <select class="form-select mb-2" formControlName="supplierId">
+              <option *ngFor="let c of suppliers ; index as i;" value="{{c.id}}">{{c.name}}</option>
+            </select>
+          </div>
+          <p *ngIf="this.form.get('supplierId')?.errors?.['required'] && form.get('supplierId')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe seleccionar el proveedor
+          </p>
+
           <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
             <div>
               <button [disabled]="form.invalid" class="btn btn-success mt-2" type="submit">Aceptar</button>
@@ -52,5 +63,8 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="show && !loading">
+  <app-excursions (newExcursionEvent)="editExcursion($event)"></app-excursions>
 </div>
 

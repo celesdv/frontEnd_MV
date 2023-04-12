@@ -117,6 +117,8 @@ export class FormTransferComponent implements OnInit {
             this.loading = false;
             this.show = true;
             this.form.reset();
+            this.id = 0
+            this.action = 'Agregar ';
           },
           error: (e: HttpErrorResponse) => {
             this.errorService.msjError(e);
