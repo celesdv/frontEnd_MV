@@ -27,7 +27,6 @@ export class FormAssistanceComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private router: Router,
     private errorService: ErrorService,
     private budgetService: BudgetService,
     private supplierService: SupplierService,

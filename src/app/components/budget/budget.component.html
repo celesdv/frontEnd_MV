@@ -70,8 +70,12 @@
                 <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
               </span>
             </p>
-            <!-- <p>Enlatados: <span *ngFor="let i of c.canneds">
-                {{i.name}} | </span></p> -->
+            <p *ngIf="c.canneds && c.canneds.length > 0">
+              Enlatados:
+              <span *ngFor="let i of c.canneds">
+                <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
+              </span>
+            </p>
           </td>
           <td class="align-middle">
             <p>{{c.detail}}</p>

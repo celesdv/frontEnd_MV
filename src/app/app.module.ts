@@ -41,6 +41,7 @@ import { FlightsComponent } from './components/flights/flights.component';
 import { TransfersComponent } from './components/transfers/transfers.component';
 import { AssistancesComponent } from './components/assistances/assistances.component';
 import { ExcursionsComponent } from './components/excursions/excursions.component';
+import { CannedsComponent } from './components/canneds/canneds.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { ExcursionsComponent } from './components/excursions/excursions.componen
     TransfersComponent,
     AssistancesComponent,
     ExcursionsComponent,
+    CannedsComponent,
   ],
   imports: [
     BrowserModule,
