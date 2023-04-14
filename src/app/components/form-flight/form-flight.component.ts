@@ -30,7 +30,6 @@ export class FormFlightComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private router: Router,
     private errorService: ErrorService,
     private budgetService: BudgetService,
     private supplierService: SupplierService,
@@ -72,6 +71,17 @@ export class FormFlightComponent implements OnInit {
 
   addNewSection(section: Section, index: number) {
     this.sections.splice(index, 1, section);
+  }
+
+  deleteI(index: number) {
+    if (!this.sections[index]) {
+      this.newI.splice(index, 1);
+    }
+  }
+
+  deleteSection(index: number) {
+    this.newI.splice(index, 1);
+    this.sections.splice(index, 1);
   }
 
   editFlight(id: number) {

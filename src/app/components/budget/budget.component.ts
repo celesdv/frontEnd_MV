@@ -44,7 +44,17 @@ export class BudgetComponent implements OnInit {
   }
 
   deleteBudget(id: number){
-
+    this.loading = true;
+    this.budgetService.deleteBudget(id).subscribe({
+      next: () => {
+        this.toastr.info('Registro Eliminado', 'Exito');
+        this.getBudgets()
+      },
+      error: (e: HttpErrorResponse) => {
+        this.errorService.msjError(e);
+        this.loading = false;
+      },
+    });
   }
 
   editBudget(id: number, orderId:number) {

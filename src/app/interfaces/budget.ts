@@ -1,3 +1,4 @@
+import { Accommodation } from "./accommodation";
 import { Assistance } from "./assistance";
 import { Canned } from "./canned";
 import { Excursion } from "./excursion";
@@ -13,11 +14,11 @@ export interface Budget {
   detail: string;
   orderId?: number;
   flights?: Flight[];
-  hotels?: Hotel[];
   excursions?: Excursion[];
   assistance?: Assistance[];
   transfers?: Transfer[];
   canneds?: Canned[];
+  accommodation?: Accommodation[],
   items?: Item[];
   order?:Order
 }

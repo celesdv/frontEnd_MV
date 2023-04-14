@@ -90,7 +90,24 @@
       <app-form-item></app-form-item>
     </div>
     <div *ngIf="item === 'end'">
-      fin
+      <div class="row mt-3">
+        <div class="col-lg-3 offset-lg-3">
+          <div class="card mb-3" style="min-width: 40rem;">
+            <div class="card-header text-center fw-bold fs-5">Finalizar Presupuesto</div>
+            <div class="card-body">
+              <div class="alert alert-primary d-flex align-items-center" role="alert">
+                <i class="bi bi-info-circle" style="font-size: 1.5rem;"></i>
+                <div class="ms-2">
+                  ¿Desea finalizar el presupuesto?
+                </div>
+              </div>
+              <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
+                  <button class="btn btn-primary mt-2" type="button" (click)="finish()">Aceptar y Finalizar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>     
     </div>
   </div>
 </div>

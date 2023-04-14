@@ -1,8 +1,13 @@
 <div *ngIf="added" class="d-md-flex justify-content-between mb-2">
   <p><span>Tramo {{index+1}}: {{section.name}}</span><span *ngIf="section.company"> | Compañia:
       {{section.company}}</span></p>
-  <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" (click)="edit()">
-    <i class="bi bi-pencil-fill" style="color: white;"></i>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" (click)="edit()">
+      <i class="bi bi-pencil-fill" style="color: white;"></i>
+    </div>
+    <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" (click)="deleteSection(section.id!)">
+      <i class="bi bi-trash3-fill" style="color: white;"></i>
+    </div>
   </div>
 </div>
 <div *ngIf="!added">
@@ -55,6 +60,7 @@
     <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
       <div>
         <button [disabled]="form.invalid" class="btn btn-info text-light mt-2" type="submit">{{action}}</button>
+        <button class="btn btn-secondary mt-2 ms-2" type="button" (click)="close()">Cerrar</button>
       </div>
     </div>
   </form>

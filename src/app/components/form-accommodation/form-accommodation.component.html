@@ -1,83 +1,102 @@
 <div class="row mt-3">
     <div class="col-lg-3 offset-lg-3">
-        <div class="card mb-3" style="min-width: 40rem;">
-            <div class="card-header text-center fw-bold fs-5">{{ action }} Alojamiento</div>
+        <div class="card mb-3" style="min-width: 40rem">
+            <div class="card-header text-center fw-bold fs-5">
+                {{ action }} Alojamiento
+            </div>
             <div class="card-body">
                 <app-spinner *ngIf="loading"></app-spinner>
                 <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
-
                     <div class="input-group mb-2">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%"
                             required>Nombre</span>
-                        <input type="text" class="form-control" formControlName="name">
+                        <input type="text" class="form-control" formControlName="name" />
                     </div>
                     <p *ngIf="this.form.get('name')?.errors?.['required'] && form.get('name')?.touched"
-                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px">
                         Debe ingresar un nombre
                     </p>
 
                     <div class="input-group mb-2">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Noches</span>
-                        <input type="number" class="form-control" formControlName="nights">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%">Noches</span>
+                        <input type="number" class="form-control" formControlName="nights" />
                     </div>
                     <p *ngIf="this.form.get('nights')?.errors?.['required'] && form.get('nights')?.touched"
-                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px">
                         Debe ingresar las noches
                     </p>
 
                     <div class="input-group mb-2">
-                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Precio</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%">Precio</span>
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" formControlName="value">
+                        <input type="number" class="form-control" formControlName="value" />
                         <span class="input-group-text">.00</span>
                     </div>
                     <p *ngIf="this.form.get('value')?.errors?.['required'] && form.get('value')?.touched"
-                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px">
                         Debe ingresar el precio
                     </p>
 
                     <div class="input-group mb-2">
                         <span class="input-group-text" id="inputGroup-sizing-default"
-                            style="width: 30%;">Impuestos</span>
+                            style="width: 30%">Impuestos</span>
                         <span class="input-group-text">$</span>
-                        <input type="number" class="form-control" formControlName="tax">
+                        <input type="number" class="form-control" formControlName="tax" />
                         <span class="input-group-text">.00</span>
                     </div>
 
                     <div class="input-group mb-2">
-                        <span class="input-group-text" style="width: 30%;">Detalle</span>
+                        <span class="input-group-text" style="width: 30%">Detalle</span>
                         <textarea class="form-control" formControlName="detail"></textarea>
                     </div>
 
                     <div class="input-group mb-2">
-                        <span class="input-group-text" style="width: 30%; height: 100%;">Proveedores</span>
+                        <span class="input-group-text" style="width: 30%; height: 100%">Proveedores</span>
                         <select class="form-select mb-2" formControlName="supplierId">
-                            <option *ngFor="let c of suppliers ; index as i;" value="{{c.id}}">{{c.name}}</option>
+                            <option *ngFor="let c of suppliers; index as i" value="{{ c.id }}">
+                                {{ c.name }}
+                            </option>
                         </select>
                     </div>
 
                     <div class="mb-2">
-                        <button class="btn btn-primary mb-2" (click)="addHotel()">Añadir Hoteles</button>
-                        <div *ngFor="let c of newH; index as i;">
-                            <app-form-hotel (newHotelEvent)="addNewHotel($event, i)" [index]="i"></app-form-hotel>
+                        <button class="btn btn-primary mb-2" (click)="addHotel()" type="button">
+                            {{ action }} Hoteles
+                        </button>
+                        <div *ngFor="let c of newH; index as i">
+                            <app-form-hotel (newHotelEvent)="addNewHotel($event, i)" [index]="i" 
+                                [accommodationId]="id"
+                                [hot]="hotels[i]" (closeHotelEvent)="deleteH(i)"
+                                (deleteHotelEvent)="deleteHotel(i)">
+                            </app-form-hotel>
                         </div>
                     </div>
 
                     <div class="mb-2">
-                        <button class="btn btn-primary mb-2" (click)="addExtra()">Añadir Extras</button>
-                        <div *ngFor="let c of newE; index as i;">
-                            <app-form-extra (newExtraEvent)="addNewExtra($event, i)" [index]="i"></app-form-extra>
+                        <button class="btn btn-primary mb-2" (click)="addExtra()" type="button">
+                            {{ action }} Extras
+                        </button>
+                        <div *ngFor="let c of newE; index as i">
+                            <app-form-extra (newExtraEvent)="addNewExtra($event, i)" [index]="i" 
+                                [accommodationId]="id"
+                                [ext]="extras[i]" (closeExtraEvent)="deleteE(i)"
+                                (deleteExtraEvent)="deleteExtra(i)">
+                            </app-form-extra>
                         </div>
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
                         <div>
-                            <button [disabled]="form.invalid" class="btn btn-success mt-2"
-                                type="submit">Aceptar</button>
+                            <button [disabled]="form.invalid" class="btn btn-success mt-2" type="submit">
+                                Aceptar
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="show && !loading">
+    <app-accommodations (newAccommodationEvent)="editAccommodation($event)"></app-accommodations>
 </div>

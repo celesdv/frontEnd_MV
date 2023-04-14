@@ -23,6 +23,7 @@ export class AddBudgetComponent implements OnInit {
   action: string = 'Iniciar';
   id: number;
   orders: Order[] = [];
+  budget?: Budget;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,11 +43,11 @@ export class AddBudgetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.orderId)
+    console.log(this.orderId);
     if (this.id != 0) {
       this.disable = false;
       this.action = 'Editar ';
-      this.budgetService.setId(this.id)
+      this.budgetService.setId(this.id);
       this.getBudget(this.id);
     } else {
       this.getOrders();
@@ -68,6 +69,7 @@ export class AddBudgetComponent implements OnInit {
           orderId: data.orderId,
           detail: data.detail,
         });
+        this.budget = data;
       },
       error: (e: HttpErrorResponse) => {
         this.errorService.msjError(e);
@@ -117,10 +119,10 @@ export class AddBudgetComponent implements OnInit {
             this.errorService.msjError(e);
             this.loading = false;
           },
-        })
+        });
       } else {
         this.budgetService.addBudget(budget).subscribe({
-          next: (data:Budget) => {
+          next: (data: Budget) => {
             this.toastr.success(
               `El presupuesto fue iniciado con exito`,
               'Presupuesto iniciado'
@@ -134,13 +136,58 @@ export class AddBudgetComponent implements OnInit {
             this.errorService.msjError(e);
             this.loading = false;
           },
-        })
+        });
       }
     }
   }
 
-  goBack(){
-    this.orderService.setId(0)
+  goBack() {
+    this.orderService.setId(0);
     this.router.navigateByUrl(`budgets`);
+  }
+
+  finish() {
+    let budgetId = this.budgetService.getId();
+    this.getBudget(budgetId);
+    let value = 0;
+    if (this.budget != undefined) {
+      this.budget.accommodation?.forEach((element) => {
+        if (!element.soft_delete) value = value + element.tax + element.value;
+      });
+      this.budget.assistance?.forEach((element) => {
+        if (!element.soft_delete) value = value + element.tax + element.value;
+      });
+      this.budget.canneds?.forEach((element) => {
+        if (!element.soft_delete) value = value + element.tax + element.value;
+      });
+      this.budget.excursions?.forEach((element) => {
+        if (!element.soft_delete) value = value + element.tax + element.value;
+      });
+      this.budget.flights?.forEach((element) => {
+        if (!element.soft_delete) value = value + element.tax + element.value;
+      });
+      this.budget.items?.forEach((element) => {
+        if (!element.soft_delete) value = value + element.tax + element.value;
+      });
+      this.budget.transfers?.forEach((element) => {
+        if (!element.soft_delete) value = value + element.tax + element.value;
+      });
+      this.budget.total = value;
+      this.budgetService.updateBudget(this.budget).subscribe({
+        next: () => {
+          this.toastr.success(
+            `El detalle del presupuesto fue finalizado con exito`,
+            'Presupuesto finalizado'
+          );
+          this.loading = false;
+          console.log()
+          this.router.navigateByUrl(`/budgets/resumen/${budgetId}`)
+        },
+        error: (e: HttpErrorResponse) => {
+          this.errorService.msjError(e);
+          this.loading = false;
+        },
+      });
+    }
   }
 }

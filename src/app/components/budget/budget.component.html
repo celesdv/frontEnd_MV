@@ -45,11 +45,10 @@
                 <span *ngIf="i.soft_delete === false">{{i.origin}}/{{i.destination}} - </span>
               </span>
             </p>
-            <p *ngIf="c.hotels && c.hotels.length > 0">
-              Hoteles:
-              <span *ngFor="let i of c.hotels">
-                <!-- <span *ngIf="i.soft_delete === false">{{i.name}} |  |</span> -->
-                {{i.name}} |
+            <p *ngIf="c.accommodation && c.accommodation.length > 0">
+              Alojamientos:
+              <span *ngFor="let i of c.accommodation">
+                <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
               </span>
             </p>
             <p *ngIf="c.transfers && c.transfers.length > 0">
@@ -100,7 +99,10 @@
               data-tippy-content="Eliminar" (click)="deleteBudget(c.id!)">
               <i class="bi bi-trash3-fill" style="color: white;"></i>
             </div>
-
+            <div class="p-2 bg-info text-center rounded-circle mt-2" style="width: 2.5rem;" ngxTippy
+              data-tippy-content="Ver Resumen"  routerLink="resumen/{{c.id}}">
+              <i class="bi bi-file-text-fill" style="color: white;"></i>
+            </div>
           </td>
         </tr>
       </tbody>

@@ -18,7 +18,11 @@
         <tr *ngFor="let c of flights; index as i;">
           <td class="align-middle">{{c.origin}} | {{c.destination}}</td>
           <td class="align-middle">{{c.date}}</td>
-          <td class="align-middle"><span *ngFor="let s of c.sections"> {{s.name}} |</span> </td>
+          <td class="align-middle">
+            <span *ngFor="let s of c.sections">
+              <span *ngIf="!s.soft_delete">{{s.name}} | </span>
+            </span>
+          </td>
           <td class="align-middle">{{c.baggage}}</td>
           <td class="align-middle">$ {{c.value + c.tax}} </td>
           <td class="align-middle"><span *ngIf="c.supplier">{{c.supplier.name}}</span></td>

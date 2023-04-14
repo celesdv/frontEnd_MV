@@ -1,10 +1,15 @@
-<div *ngIf="added" class="d-md-flex justify-content-between">
+<div *ngIf="added" class="d-md-flex justify-content-between mb-2">
     <p><span>Extra {{index+1}}: {{extra.name}}</span></p>
-    <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" (click)="edit()">
-      <i class="bi bi-pencil-fill" style="color: white;"></i>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" (click)="edit()">
+        <i class="bi bi-pencil-fill" style="color: white;"></i>
+      </div>
+      <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" (click)="deleteExtra(extra.id!)">
+        <i class="bi bi-trash3-fill" style="color: white;"></i>
+      </div>
     </div>
   </div>
-  <div>
+  <div *ngIf="!added">
     <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
   
       <div class="input-group mb-2">
@@ -23,7 +28,8 @@
   
       <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
         <div>
-          <button [disabled]="form.invalid" class="btn btn-info mt-2" type="submit">Aceptar</button>
+          <button [disabled]="form.invalid" class="btn btn-info mt-2" type="submit">{{action}}</button>
+          <button class="btn btn-secondary mt-2 ms-2" type="button" (click)="close()">Cerrar</button>
         </div>
       </div>
     </form>

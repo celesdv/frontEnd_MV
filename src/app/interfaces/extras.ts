@@ -3,4 +3,5 @@ export interface Extra {
   name: string;
   detail: string;
   accommodationId?: number;
+  soft_delete?: boolean;
 }

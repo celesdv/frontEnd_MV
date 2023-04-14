@@ -5,4 +5,5 @@ export interface Hotel {
   nights: number;
   detail: string;
   accommodationId?: number;
+  soft_delete?: boolean;
 }

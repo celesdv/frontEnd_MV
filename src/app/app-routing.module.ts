@@ -16,6 +16,7 @@ import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './utils/auth.guard';
 import { AdminGuard } from './utils/admin.guard';
+import { BudgetResumenComponent } from './components/budget-resumen/budget-resumen.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'budgets', component: BudgetComponent, canActivate: [AuthGuard] },
   { path: 'budgets/form', component: AddBudgetComponent, canActivate: [AuthGuard] },
   { path: 'budgets/form/:id', component: AddBudgetComponent, canActivate: [AuthGuard] },
+  { path: 'budgets/resumen/:id', component: BudgetResumenComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 

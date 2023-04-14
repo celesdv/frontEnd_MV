@@ -1,5 +1,6 @@
 import { Extra } from "./extras";
 import { Hotel } from "./hotel";
+import { Supplier } from "./supplier";
 
 export interface Accommodation {
   id?: number;
@@ -10,6 +11,8 @@ export interface Accommodation {
   detail: string;
   supplierId: number;
   budgetId: number;
-  hotel: Hotel[];
+  hotels: Hotel[];
   extras: Extra[];
+  supplier?: Supplier;
+  soft_delete?: boolean;
 }

@@ -44,6 +44,8 @@ import { ExcursionsComponent } from './components/excursions/excursions.componen
 import { CannedsComponent } from './components/canneds/canneds.component';
 import { FormItemComponent } from './components/form-item/form-item.component';
 import { ItemsComponent } from './components/items/items.component';
+import { AccommodationsComponent } from './components/accommodations/accommodations.component';
+import { BudgetResumenComponent } from './components/budget-resumen/budget-resumen.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { ItemsComponent } from './components/items/items.component';
     CannedsComponent,
     FormItemComponent,
     ItemsComponent,
+    AccommodationsComponent,
+    BudgetResumenComponent,
   ],
   imports: [
     BrowserModule,

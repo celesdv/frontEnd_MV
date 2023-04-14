@@ -16,6 +16,8 @@ export class FormSectionComponent implements OnInit {
   @Input() index!: number;
   @Input() sec!: Section;
   @Output() newSectionEvent = new EventEmitter<Section>();
+  @Output() closeSectionEvent = new EventEmitter<void>();
+  @Output() deleteSectionEvent = new EventEmitter<void>();
 
   added: boolean = false;
   loading: boolean = false;
@@ -117,14 +119,15 @@ export class FormSectionComponent implements OnInit {
       if(this.flightId != 0) {
         this.section.flightId = this.flightId
         this.sectionService.addSection(this.section).subscribe({
-          next: () => {
+          next: (data:Section) => {
             this.toastr.success(
-              `El tramo ${this.section.name} fue agregado con exito`,
+              `El tramo ${data.name} fue agregado con exito`,
               'Tramo agregado'
             );
             this.loading = false;
             this.added = true;
-            this.newSectionEvent.emit(this.section);
+            this.section = data
+            this.newSectionEvent.emit(data);
           },
           error: (e: HttpErrorResponse) => {
             this.errorService.msjError(e);
@@ -136,6 +139,24 @@ export class FormSectionComponent implements OnInit {
         this.added = true;
       }
     }
+  }
 
+  close() {
+    this.closeSectionEvent.emit();
+    this.added = true;
+  }
+
+  deleteSection(id: number) {
+    console.log(id);
+    this.sectionService.deleteSection(id).subscribe({
+      next: () => {
+        this.toastr.info('Registro Eliminado', 'Exito');
+        this.deleteSectionEvent.emit();
+      },
+      error: (e: HttpErrorResponse) => {
+        this.errorService.msjError(e);
+        this.loading = false;
+      },
+    });
   }
 }
