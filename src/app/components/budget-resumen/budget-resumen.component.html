@@ -1,1 +1,157 @@
-<p>budget-resumen works!</p>
+<div class="card m-3">
+    <div *ngIf="loading">
+        <app-spinner></app-spinner>
+    </div>
+    <div class="card-body" *ngIf="budget">
+        <h4 class="card-title text-center" *ngIf="budget.order">Presupuesto {{budget.order.destination}}</h4>
+        <div *ngIf="budget.order" class="ms-3">
+            <h5>Detalle Pedido</h5>
+            <div class="ms-3">
+                <p class="m-1 ms-3"><strong>Nombre:</strong> {{budget.order.name}} </p>
+                <p class="m-1 ms-3"><strong>Destino:</strong> {{budget.order.destination}} </p>
+                <p class="m-1 ms-3"><strong>Fecha:</strong> {{budget.order.date}} </p>
+                <p class="m-1 ms-3"><strong>Noches:</strong> {{budget.order.nights}} </p>
+                <p class="m-1 ms-3">
+                    <strong>Pax: </strong>
+                    <span *ngIf="budget.order.adult">{{budget.order.adult}} Adultos - </span>
+                    <span *ngIf="budget.order.toddler">{{budget.order.toddler}} Bebes - </span>
+                    <span *ngIf="budget.order.child">{{budget.order.child}} Niños - </span>
+                    <span *ngIf="budget.order.teen">{{budget.order.teen}} Adolescentes - </span>
+                    <span *ngIf="budget.order.senior">{{budget.order.senior}} Adultos mayores - </span>
+                </p>
+                <p class="m-1 ms-3" *ngIf="budget.order.detail"><strong>Detalle:</strong> {{budget.order.detail}} </p>
+            </div>
+
+        </div>
+        <div class="ms-3">
+            <h5>Detalle Presupuesto</h5>
+            <div *ngIf="budget.flights && budget.flights.length > 0" class="ms-3">
+                <h5 class="ms-3">Servicios Áereos</h5>
+                <div *ngFor="let f of budget.flights" class="m-3">
+                    <div *ngIf="!f.soft_delete">
+                        <p class="m-1 ms-3">Vuelo: {{f.origin}} - {{f.destination}}</p>
+                        <p class="m-1 ms-3">Fecha: {{f.date}}</p>
+                        <p class="m-1 ms-3">Equiaje: {{f.baggage ? f.baggage : "Sin equipaje"}}</p>
+                        <p class="m-1 ms-3">Detalle: {{f.detail ? f.detail : "Sin detalle"}}</p>
+                        <p class="m-1 ms-3">Tramos:
+                            <span *ngIf="f.sections && f.sections.length === 0"> Sin tramos </span>
+                        </p>
+                        <div *ngFor="let s of f.sections" class="m-3">
+                            <div *ngIf="!s.soft_delete">
+                                <p class="m-1 ms-3">Tramo: {{s.name}}</p>
+                                <p class="m-1 ms-3">Salida:
+                                    {{s.calendar_origin.substring(0,10).split('-').reverse().join('/')}}
+                                    {{s.calendar_origin.substring(11, 16).concat('hs')}}
+                                </p>
+                                <p class="m-1 ms-3">Llegada:
+                                    {{s.calendar_destination.substring(0,10).split('-').reverse().join('/')}}
+                                    {{s.calendar_destination.substring(11, 16).concat('hs')}}
+                                </p>
+                                <p class="m-1 ms-3">Compañia: {{s.company ? s.company : "Sin compañia"}}</p>
+                                <p class="m-1 ms-3">Detalle: {{s.detail ? s.detail : "Sin detalle"}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="budget.accommodation && budget.accommodation.length > 0" class="ms-3">
+                <h5 class="ms-3">Alojamientos</h5>
+                <div *ngFor="let a of budget.accommodation" class="m-3">
+                    <div *ngIf="!a.soft_delete">
+                        <p class="m-1 ms-3">Nombre: {{a.name}}</p>
+                        <p class="m-1 ms-3">Noches: {{a.nights}}</p>
+                        <p class="m-1 ms-3">Detalle: {{a.detail ? a.detail : "Sin detalle"}}</p>
+                        <p class="m-1 ms-3">Hoteles:
+                            <span *ngIf="a.hotels && a.hotels.length === 0"> Sin Hoteles </span>
+                        </p>
+                        <div *ngFor="let h of a.hotels" class="m-3">
+                            <div *ngIf="!h.soft_delete">
+                                <p class="m-1 ms-3">Nombre: {{h.name}}</p>
+                                <p class="m-1 ms-3">Noches: {{h.nights}}</p>
+                                <p class="m-1 ms-3">Regimen: {{h.regime}}</p>
+                                <p class="m-1 ms-3">Detalle: {{h.detail ? h.detail : "Sin detalle"}}</p>
+                            </div>
+                        </div>
+                        <p class="m-1 ms-3">Extras:
+                            <span *ngIf="a.extras && a.extras.length === 0"> Sin Extras </span>
+                        </p>
+                        <div *ngFor="let e of a.extras" class="m-3">
+                            <div *ngIf="!e.soft_delete">
+                                <p class="m-1 ms-3">Nombre: {{e.name}}</p>
+                                <p class="m-1 ms-3">Detalle: {{e.detail ? e.detail : "Sin detalle"}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="budget.transfers && budget.transfers.length > 0" class="ms-3">
+                <h5 class="ms-3">Traslados</h5>
+                <div *ngFor="let t of budget.transfers" class="m-3">
+                    <div *ngIf="!t.soft_delete">
+                        <p class="m-1 ms-3">Traslado: {{t.origin}} - {{t.destination}} </p>
+                        <p class="m-1 ms-3">Tipo: {{t.type ? t.type : "Sin tipo"}}</p>
+                        <p class="m-1 ms-3">Medio: {{t.conveyance ? t.conveyance : "Sin medio"}}</p>
+                        <p class="m-1 ms-3">Detalle: {{t.detail ? t.detail : "Sin detalle"}}</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="budget.assistance && budget.assistance.length > 0" class="ms-3">
+                <h5 class="ms-3">Asistencias</h5>
+                <div *ngFor="let a of budget.assistance" class="m-3">
+                    <div *ngIf="!a.soft_delete">
+                        <p class="m-1 ms-3">Nombre: {{a.name}}</p>
+                        <p class="m-1 ms-3">Tipo: {{a.type ? a.type : "Sin tipo"}}</p>
+                        <p class="m-1 ms-3">Detalle: {{a.detail ? a.detail : "Sin detalle"}}</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="budget.excursions && budget.excursions.length > 0" class="ms-3">
+                <h5 class="ms-3">Excursiones</h5>
+                <div *ngFor="let e of budget.excursions" class="m-3">
+                    <div *ngIf="!e.soft_delete">
+                        <p class="m-1 ms-3">Nombre: {{e.name}}</p>
+                        <p class="m-1 ms-3">Fecha: {{e.date ? e.date : "Sin fecha"}}</p>
+                        <p class="m-1 ms-3">Detalle: {{e.detail ? e.detail : "Sin detalle"}}</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="budget.canneds && budget.canneds.length > 0" class="ms-3">
+                <h5 class="ms-3">Paquetes</h5>
+                <div *ngFor="let c of budget.canneds" class="m-3">
+                    <div *ngIf="!c.soft_delete">
+                        <p class="m-1 ms-3">Nombre: {{c.name}}</p>
+                        <p class="m-1 ms-3">Tipo: {{c.type ? c.type : "Sin tipo"}}</p>
+                        <p class="m-1 ms-3">Detalle: {{c.detail ? c.detail : "Sin detalle"}}</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="budget.items && budget.items.length > 0" class="ms-3">
+                <h5 class="ms-3">Otros</h5>
+                <div *ngFor="let i of budget.items" class="m-3">
+                    <div *ngIf="!i.soft_delete">
+                        <p class="m-1 ms-3">Nombre: {{i.name}}</p>
+                        <p class="m-1 ms-3">Detalle: {{i.detail ? i.detail : "Sin detalle"}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ms-3">
+            <h5 class="text-center">Valor Total: {{budget.total}}</h5>
+            <h5 class="text-center">Detalle: {{budget.detail ? budget.detail : "Sin detalle"}}</h5>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-between m-3">
+            <div class="d-md-flex">
+                <div ngxTippy data-tippy-content="Volver a presupuestos" routerLink="/budgets">
+                    <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+                </div>
+                <div ngxTippy data-tippy-content="Volver a Menu Principal" routerLink="/dashboard" class="ms-3">
+                    <i class="bi bi-house-heart-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+                </div>
+            </div>            
+            <button class="btn btn-success mt-2 ms-3" (click)="exportPDF()">Descargar PDF</button>
+        </div>
+
+    </div>
+</div>

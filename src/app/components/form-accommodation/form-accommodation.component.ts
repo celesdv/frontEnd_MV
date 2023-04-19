@@ -94,9 +94,7 @@ export class FormAccommodationComponent implements OnInit {
   }
 
   deleteE(index: number) {
-    if (!this.extras[index]) {
       this.newE.splice(index, 1);
-    }
   }
 
   deleteExtra(index: number) {

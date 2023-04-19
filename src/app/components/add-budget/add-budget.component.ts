@@ -145,49 +145,5 @@ export class AddBudgetComponent implements OnInit {
     this.orderService.setId(0);
     this.router.navigateByUrl(`budgets`);
   }
-
-  finish() {
-    let budgetId = this.budgetService.getId();
-    this.getBudget(budgetId);
-    let value = 0;
-    if (this.budget != undefined) {
-      this.budget.accommodation?.forEach((element) => {
-        if (!element.soft_delete) value = value + element.tax + element.value;
-      });
-      this.budget.assistance?.forEach((element) => {
-        if (!element.soft_delete) value = value + element.tax + element.value;
-      });
-      this.budget.canneds?.forEach((element) => {
-        if (!element.soft_delete) value = value + element.tax + element.value;
-      });
-      this.budget.excursions?.forEach((element) => {
-        if (!element.soft_delete) value = value + element.tax + element.value;
-      });
-      this.budget.flights?.forEach((element) => {
-        if (!element.soft_delete) value = value + element.tax + element.value;
-      });
-      this.budget.items?.forEach((element) => {
-        if (!element.soft_delete) value = value + element.tax + element.value;
-      });
-      this.budget.transfers?.forEach((element) => {
-        if (!element.soft_delete) value = value + element.tax + element.value;
-      });
-      this.budget.total = value;
-      this.budgetService.updateBudget(this.budget).subscribe({
-        next: () => {
-          this.toastr.success(
-            `El detalle del presupuesto fue finalizado con exito`,
-            'Presupuesto finalizado'
-          );
-          this.loading = false;
-          console.log()
-          this.router.navigateByUrl(`/budgets/resumen/${budgetId}`)
-        },
-        error: (e: HttpErrorResponse) => {
-          this.errorService.msjError(e);
-          this.loading = false;
-        },
-      });
-    }
-  }
+ 
 }

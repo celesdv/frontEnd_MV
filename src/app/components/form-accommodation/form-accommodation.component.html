@@ -61,7 +61,7 @@
 
                     <div class="mb-2">
                         <button class="btn btn-primary mb-2" (click)="addHotel()" type="button">
-                            {{ action }} Hoteles
+                            Añadir Hoteles
                         </button>
                         <div *ngFor="let c of newH; index as i">
                             <app-form-hotel (newHotelEvent)="addNewHotel($event, i)" [index]="i" 
@@ -74,7 +74,7 @@
 
                     <div class="mb-2">
                         <button class="btn btn-primary mb-2" (click)="addExtra()" type="button">
-                            {{ action }} Extras
+                            Añadir Extras
                         </button>
                         <div *ngFor="let c of newE; index as i">
                             <app-form-extra (newExtraEvent)="addNewExtra($event, i)" [index]="i" 

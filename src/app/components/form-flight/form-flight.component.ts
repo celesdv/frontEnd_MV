@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Flight } from 'src/app/interfaces/flight';
 import { Section } from 'src/app/interfaces/section';
@@ -74,9 +73,7 @@ export class FormFlightComponent implements OnInit {
   }
 
   deleteI(index: number) {
-    if (!this.sections[index]) {
       this.newI.splice(index, 1);
-    }
   }
 
   deleteSection(index: number) {
@@ -94,7 +91,6 @@ export class FormFlightComponent implements OnInit {
   getFlight(id: number) {
     this.flightService.getById(id).subscribe({
       next: (data: Flight) => {
-        this.sections = data.sections
         this.form.setValue({
           origin: data.origin,
           destination: data.destination,
@@ -106,7 +102,10 @@ export class FormFlightComponent implements OnInit {
           supplierId: data.supplierId,
         });
         data.sections.forEach(e => {
-          this.newI.push(0);
+          if (!e.soft_delete) {
+            this.sections.push(e);
+            this.newI.push(0);
+          }
         });
         this.loading = false;
       },

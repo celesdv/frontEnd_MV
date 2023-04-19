@@ -46,6 +46,7 @@ import { FormItemComponent } from './components/form-item/form-item.component';
 import { ItemsComponent } from './components/items/items.component';
 import { AccommodationsComponent } from './components/accommodations/accommodations.component';
 import { BudgetResumenComponent } from './components/budget-resumen/budget-resumen.component';
+import { FinBudgetComponent } from './components/fin-budget/fin-budget.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { BudgetResumenComponent } from './components/budget-resumen/budget-resum
     ItemsComponent,
     AccommodationsComponent,
     BudgetResumenComponent,
+    FinBudgetComponent,
   ],
   imports: [
     BrowserModule,
