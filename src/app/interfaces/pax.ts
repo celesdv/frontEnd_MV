@@ -6,4 +6,6 @@ export interface Pax {
   birth_date: string;
   passport: string;
   expiration: string;
+  soft_delete?:boolean;
+  bookingId?:number
 }

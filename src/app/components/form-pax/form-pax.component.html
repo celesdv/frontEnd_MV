@@ -1,0 +1,74 @@
+<div *ngIf="added" class="d-md-flex justify-content-between mb-2">
+    <p>
+        <span>Pasajero {{index+1}}: {{newPax.first_name}} {{newPax.last_name}} | DNI: {{newPax.dni}}</span>
+    </p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" (click)="edit()">
+            <i class="bi bi-pencil-fill" style="color: white;"></i>
+        </div>
+        <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" (click)="deletePax(newPax.id!)">
+            <i class="bi bi-trash3-fill" style="color: white;"></i>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!added">
+    <div class="text-center fw-bold fs-5">
+        {{ action }} Pasajero
+    </div>
+    <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Nombre</span>
+            <input type="text" class="form-control" formControlName="first_name">
+        </div>
+        <p *ngIf="this.form.get('first_name')?.errors?.['required'] && form.get('first_name')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un nombre
+        </p>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Apellido</span>
+            <input type="text" class="form-control" formControlName="last_name">
+        </div>
+        <p *ngIf="this.form.get('last_name')?.errors?.['required'] && form.get('last_name')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un apellido
+        </p>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">DNI</span>
+            <input type="number" class="form-control" formControlName="dni" maxlength="8"
+                oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+        </div>
+        <p *ngIf="this.form.get('dni')?.errors?.['required'] && form.get('dni')?.touched"
+            class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+            Debe ingresar un DNI
+        </p>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"
+                required>Nacimiento</span>
+            <input type="date" class="form-control" formControlName="birth_date">
+        </div> 
+
+        
+        <div class="input-group mb-2">
+            <span class="input-group-text" style="width: 30%;">Pasaporte</span>
+            <input type="text" class="form-control" formControlName="passport">
+        </div>
+
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"
+                required>Expiracion</span>
+            <input type="date" class="form-control" formControlName="expiration">
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-end m-2">
+            <div>
+                <button [disabled]="form.invalid" class="btn btn-info mt-2" type="submit">{{action}}</button>
+                <button class="btn btn-secondary mt-2 ms-2" type="button" (click)="close()">Cerrar</button>
+            </div>
+        </div>
+    </form>
+</div>

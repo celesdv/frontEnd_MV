@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Accommodation } from 'src/app/interfaces/accommodation';
 import { AccommodationService } from 'src/app/service/accommodation.service';
@@ -11,7 +11,7 @@ import { ErrorService } from 'src/app/service/error.service';
   templateUrl: './accommodations.component.html',
   styleUrls: ['./accommodations.component.css'],
 })
-export class AccommodationsComponent {
+export class AccommodationsComponent implements OnInit {
   @Output() newAccommodationEvent = new EventEmitter<number>();
   budgetId: number;
   loading = true;

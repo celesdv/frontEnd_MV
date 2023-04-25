@@ -7,10 +7,10 @@ export interface Booking {
   reference: string;
   travel_date: string;
   detail: string;
-  soft_delete: boolean;
-  budgetId?:number,
-  clientId?:number,
-  client: Client,
-  budget: Budget,
+  soft_delete?: boolean;
+  budgetId:number,
+  clientId:number,
+  client?: Client,
+  budget?: Budget,
   paxes: Pax[]
 }

@@ -47,6 +47,11 @@ import { ItemsComponent } from './components/items/items.component';
 import { AccommodationsComponent } from './components/accommodations/accommodations.component';
 import { BudgetResumenComponent } from './components/budget-resumen/budget-resumen.component';
 import { FinBudgetComponent } from './components/fin-budget/fin-budget.component';
+import { FormBookingComponent } from './components/form-booking/form-booking.component';
+import { BookingsComponent } from './components/bookings/bookings.component';
+import { PaxComponent } from './components/pax/pax.component';
+import { FormPaxComponent } from './components/form-pax/form-pax.component';
+import { BookingStatusComponent } from './components/booking-status/booking-status.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +92,11 @@ import { FinBudgetComponent } from './components/fin-budget/fin-budget.component
     AccommodationsComponent,
     BudgetResumenComponent,
     FinBudgetComponent,
+    FormBookingComponent,
+    BookingsComponent,
+    PaxComponent,
+    FormPaxComponent,
+    BookingStatusComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,8 @@ import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './utils/auth.guard';
 import { AdminGuard } from './utils/admin.guard';
 import { BudgetResumenComponent } from './components/budget-resumen/budget-resumen.component';
+import { BookingsComponent } from './components/bookings/bookings.component';
+import { FormBookingComponent } from './components/form-booking/form-booking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -41,6 +43,9 @@ const routes: Routes = [
   { path: 'budgets/form', component: AddBudgetComponent, canActivate: [AuthGuard] },
   { path: 'budgets/form/:id', component: AddBudgetComponent, canActivate: [AuthGuard] },
   { path: 'budgets/resumen/:id', component: BudgetResumenComponent, canActivate: [AuthGuard] },
+  { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
+  { path: 'bookings/form', component: FormBookingComponent, canActivate: [AuthGuard] },
+  { path: 'bookings/form/:id', component: FormBookingComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 

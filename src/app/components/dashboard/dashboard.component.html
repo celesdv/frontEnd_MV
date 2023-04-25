@@ -72,12 +72,16 @@
     <div class="row p-2">
       <div class="card col-12 ">
         <div class="card-header">
-          Estado de Reservas
+          <div class="d-md-flex justify-content-between">
+            <p class="align-middle mt-2 mb-0">Estado de Reservas</p>
+            <div>
+              <button class="btn btn-primary" type="button" routerLink="/bookings">Ver Todas</button>
+            </div>            
+          </div>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Reservas</h5>
+            <app-booking-status></app-booking-status>
         </div>
-        <app-spinner></app-spinner>
       </div>
     </div>
 

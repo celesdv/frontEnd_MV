@@ -1,0 +1,84 @@
+<div class="row mt-3">
+    <div class="col-lg-3 offset-lg-3">
+        <div class="card mb-3" style="min-width: 40rem;">
+            <div class="card-header text-center fw-bold fs-5">
+                {{ action }} Reserva
+            </div>
+            <div class="card-body">
+                <app-spinner *ngIf="loading"></app-spinner>
+                <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%; height: 100%;">Presupuestos</span>
+                        <select class="form-select mb-2" formControlName="budgetId">
+                            <option *ngFor="let c of budgets ; index as i;" value="{{c.id}}">
+                                {{c.order?.name}} / {{c.order?.destination}}
+                            </option>
+                        </select>
+                    </div>
+                    <p *ngIf="this.form.get('budgetId')?.errors?.['required'] && form.get('budgetId')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe seleccionar el presupuesto
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%; height: 100%;">Clientes</span>
+                        <select class="form-select mb-2" formControlName="clientId">
+                            <option *ngFor="let c of clients ; index as i;" value="{{c.id}}">
+                                {{c.first_name}} / {{c.last_name}}
+                            </option>
+                        </select>
+                    </div>
+                    <p *ngIf="this.form.get('clientId')?.errors?.['required'] && form.get('clientId')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe seleccionar el cliente
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"
+                            required>Referencia</span>
+                        <input type="text" class="form-control" formControlName="reference">
+                    </div>
+                    <p *ngIf="this.form.get('reference')?.errors?.['required'] && form.get('reference')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe ingresar el codigo de Referencia
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"
+                            required>Fecha</span>
+                        <input type="date" class="form-control" formControlName="travel_date">
+                    </div>
+                    <p *ngIf="this.form.get('travel_date')?.errors?.['required'] && form.get('travel_date')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe ingresar la fecha de viaje
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%;">Detalle</span>
+                        <textarea class="form-control" formControlName="detail"></textarea>
+                    </div>
+
+                    <div class="mb-2">
+                        <button class="btn btn-primary mb-2" (click)="addPax()" type="button">Añadir Pasajero</button>
+                        <div *ngFor="let c of newP; index as i;">
+                            <app-form-pax (newPaxEvent)="addNewPax($event, i)" [index]="i" [bookingId]="id"
+                                [pax]="paxes[i]" (closePaxEvent)="deleteP(i)" (deletePaxEvent)="deletePax($event, i)">
+                            </app-form-pax>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-between m-2">
+                        <div ngxTippy data-tippy-content="Volver atras" routerLink="/bookings">
+                            <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+                        </div>
+                        <div>
+                            <button [disabled]="form.invalid" class="btn btn-success mt-2"
+                                type="submit">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
