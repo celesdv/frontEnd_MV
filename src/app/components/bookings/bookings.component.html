@@ -28,7 +28,7 @@
         <tbody class="table-group-divider">
           <tr *ngFor="let c of bookings; index as i;">
             <td class="align-middle fw-semibold">{{c.reference}}</td>
-            <td class="align-middle">{{c.travel_date}}</td>
+            <td class="align-middle">{{c.travel_date.substring(0,10).split("-").reverse().join("-")}}</td>
             <td class="align-middle">{{c.detail}}</td>
             <td class="align-middle">{{c.client?.last_name}} {{c.client?.first_name}}</td>
             <td class="align-middle">{{c.budget?.order?.name}} {{c.budget?.order?.destination}} {{c.budget?.order?.date}}</td>

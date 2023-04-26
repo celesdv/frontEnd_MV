@@ -1,1 +1,42 @@
-<p>booking-status works!</p>
+<div class="row scroll" *ngIf="!loading">
+    <div class="col">
+        <div class="sticky-top">
+            Pendientes <span class="badge bg-primary">{{warning.length}}</span>
+        </div>        
+        <div *ngIf="warning && warning.length > 0">
+            <div *ngFor="let a of warning">
+                <span>
+                    <i class="bi bi-check" style="color: #0d6efd"></i>
+                    {{a.budget?.order?.name}} | {{a.travel_date.substring(0,10).split("-").reverse().join("-")}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col scroll">
+        <div class="sticky-top">
+            Confirmadas <span class="badge bg-success">{{confirm.length}}</span>
+        </div>        
+        <div *ngIf="confirm && confirm.length > 0">
+            <div *ngFor="let a of confirm">
+                <span>
+                    <i class="bi bi-check" style="color: #198754"></i>
+                    {{a.budget?.order?.name}} | {{a.travel_date.substring(0,10).split("-").reverse().join("-")}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col scroll">
+        <div class="sticky-top">
+            Urgentes <span class="badge bg-danger">{{alert.length}}</span>
+        </div>        
+        <div *ngIf="alert && alert.length > 0">
+            <div *ngFor="let a of alert">
+                <span>
+                    <i class="bi bi-check" style="color: #dc3545"></i>
+                    {{a.budget?.order?.name}} | {{a.travel_date.substring(0,10).split("-").reverse().join("-")}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<app-spinner *ngIf="loading"></app-spinner>
