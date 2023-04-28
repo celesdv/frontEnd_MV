@@ -52,6 +52,8 @@ import { BookingsComponent } from './components/bookings/bookings.component';
 import { PaxComponent } from './components/pax/pax.component';
 import { FormPaxComponent } from './components/form-pax/form-pax.component';
 import { BookingStatusComponent } from './components/booking-status/booking-status.component';
+import { AccountingMenuComponent } from './components/accounting-menu/accounting-menu.component';
+import { AccountingsComponent } from './components/accountings/accountings.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +99,8 @@ import { BookingStatusComponent } from './components/booking-status/booking-stat
     PaxComponent,
     FormPaxComponent,
     BookingStatusComponent,
+    AccountingMenuComponent,
+    AccountingsComponent,
   ],
   imports: [
     BrowserModule,

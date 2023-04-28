@@ -1,0 +1,61 @@
+<div class="card m-3">
+    <div class="d-grid gap-2 d-md-flex justify-content-between m-2 mx-3">
+        <div ngxTippy data-tippy-content="Volver atras" routerLink="/dashboard">
+            <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+        </div>
+        <div>
+            <button class="btn btn-success me-md-2 mt-2" type="button" routerLink="formOutcome">Nuevo Egreso</button>
+            <button class="btn btn-success me-md-2 mt-2" type="button" routerLink="formIncome">Nuevo Ingreso</button>
+        </div>
+    </div>
+</div>
+
+<p class="fs-3 m-1 text-center">Contabilidad</p>
+
+<div class="row m-3">
+    <div class="col p-2">
+        <div class="card text-white clientes">
+            <div class="card-body">
+                <span class="fs-5">Por Cliente</span>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-light" type="button" routerLink="/client">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col p-2">
+        <div class="card text-white cuentas">
+            <div class="card-body">
+                <span class="fs-5">Por Cuenta</span>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-light" type="button" routerLink="/count">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col p-2">
+        <div class="card text-white proveedores">
+            <div class="card-body">
+                <span class="fs-5">Por Proveeedor</span>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-light" type="button" routerLink="/supplier">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col p-2">
+        <div class="card text-white reservas">
+            <div class="card-body">
+                <span class="fs-5">Por Reserva</span>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-light" type="button" routerLink="/booking">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="fs-4 m-1 text-center">Ingresos y Egresos Totales</p>
+
+<app-accountings></app-accountings>

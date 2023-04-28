@@ -1,0 +1,137 @@
+<div *ngIf="loadingI || loadingO">
+    <app-spinner></app-spinner>
+</div>
+<div class="row m-3" *ngIf="!loadingI && !loadingO">
+    <div class="col p-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ingresos ARS</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Total</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr *ngFor="let c of incomeARS; index as i;">
+                            <td class="align-middle fw-semibold">{{c.total}}</td>
+                            <td class="align-middle">{{c.date.substring(0,10).split("-").reverse().join("-")}}</td>
+                            <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                                    data-tippy-content="Editar" routerLink="form/{{c.id}}">
+                                    <i class="bi bi-pencil-fill" style="color: white;"></i>
+                                </div>
+                                <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                                    data-tippy-content="Eliminar" (click)="deleteIncome(c.id!)">
+                                    <i class="bi bi-trash3-fill" style="color: white;"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col p-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ingresos USD</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Total</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr *ngFor="let c of incomeUSD; index as i;">
+                            <td class="align-middle fw-semibold">{{c.total}}</td>
+                            <td class="align-middle">{{c.date.substring(0,10).split("-").reverse().join("-")}}</td>
+                            <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                                    data-tippy-content="Editar" routerLink="form/{{c.id}}">
+                                    <i class="bi bi-pencil-fill" style="color: white;"></i>
+                                </div>
+                                <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                                    data-tippy-content="Eliminar" (click)="deleteIncome(c.id!)">
+                                    <i class="bi bi-trash3-fill" style="color: white;"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col p-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Egresos ARS</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Total</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr *ngFor="let c of outcomeARS; index as i;">
+                            <td class="align-middle fw-semibold">{{c.total}}</td>
+                            <td class="align-middle">{{c.date.substring(0,10).split("-").reverse().join("-")}}</td>
+                            <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                                    data-tippy-content="Editar" routerLink="form/{{c.id}}">
+                                    <i class="bi bi-pencil-fill" style="color: white;"></i>
+                                </div>
+                                <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                                    data-tippy-content="Eliminar" (click)="deleteOutcome(c.id!)">
+                                    <i class="bi bi-trash3-fill" style="color: white;"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col p-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Egresos USD</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Total</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr *ngFor="let c of outcomeUSD; index as i;">
+                            <td class="align-middle fw-semibold">{{c.total}}</td>
+                            <td class="align-middle">{{c.date.substring(0,10).split("-").reverse().join("-")}}</td>
+                            <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                                    data-tippy-content="Editar" routerLink="form/{{c.id}}">
+                                    <i class="bi bi-pencil-fill" style="color: white;"></i>
+                                </div>
+                                <div class="p-2 bg-danger text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+                                    data-tippy-content="Eliminar" (click)="deleteOutcome(c.id!)">
+                                    <i class="bi bi-trash3-fill" style="color: white;"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

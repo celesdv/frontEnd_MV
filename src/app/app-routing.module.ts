@@ -19,6 +19,7 @@ import { AdminGuard } from './utils/admin.guard';
 import { BudgetResumenComponent } from './components/budget-resumen/budget-resumen.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { FormBookingComponent } from './components/form-booking/form-booking.component';
+import { AccountingMenuComponent } from './components/accounting-menu/accounting-menu.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
   { path: 'bookings/form', component: FormBookingComponent, canActivate: [AuthGuard] },
   { path: 'bookings/form/:id', component: FormBookingComponent, canActivate: [AuthGuard] },
+  { path: 'accounting', component: AccountingMenuComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
