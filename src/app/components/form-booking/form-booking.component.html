@@ -55,6 +55,17 @@
                     </p>
 
                     <div class="input-group mb-2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Precio</span>
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" formControlName="total">
+                        <span class="input-group-text">.00</span>
+                      </div>
+                      <p *ngIf="this.form.get('total')?.errors?.['required'] && form.get('total')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe ingresar el precio
+                      </p>
+
+                    <div class="input-group mb-2">
                         <span class="input-group-text" style="width: 30%;">Detalle</span>
                         <textarea class="form-control" formControlName="detail"></textarea>
                     </div>

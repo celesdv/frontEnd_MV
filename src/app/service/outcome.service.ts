@@ -20,6 +20,10 @@ export class OutcomeService {
     return this.http.get<Outcome[]>(`${this.url}${this.api}`);
   }
 
+  getOutcomesOnly(): Observable<Outcome[]> {
+    return this.http.get<Outcome[]>(`${this.url}${this.api}/outcome`);
+  }
+
   getById(id: number): Observable<Outcome> {
     return this.http.get<Outcome>(`${this.url}${this.api}${id}`);
   }

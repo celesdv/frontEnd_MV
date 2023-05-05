@@ -20,20 +20,24 @@ export class IncomeService {
     return this.http.get<Income[]>(`${this.url}${this.api}`);
   }
 
+  getIncomesOnly(): Observable<Income[]> {
+    return this.http.get<Income[]>(`${this.url}${this.api}/incomes`);
+  }
+
   getById(id: number): Observable<Income> {
     return this.http.get<Income>(`${this.url}${this.api}${id}`);
   }
 
   getByClient(id: number): Observable<Income[]> {
-    return this.http.get<Income[]>(`${this.url}${this.api}client/${id}`);
+    return this.http.get<Income[]>(`${this.url}${this.api}${id}/client`);
   }
 
   getByCount(id: number): Observable<Income[]> {
-    return this.http.get<Income[]>(`${this.url}${this.api}count/${id}`);
+    return this.http.get<Income[]>(`${this.url}${this.api}${id}/count`);
   }
 
   getByBooking(id: number): Observable<Income[]> {
-    return this.http.get<Income[]>(`${this.url}${this.api}booking/${id}`);
+    return this.http.get<Income[]>(`${this.url}${this.api}${id}/booking`);
   }
 
   addIncome(income: Income): Observable<Income> {

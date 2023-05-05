@@ -1,0 +1,14 @@
+.scroll {
+    max-height: 20rem;
+    overflow-y: scroll;
+}
+
+.ars {
+    background-color: darkslategray;
+    color: white;
+}
+
+.usd {
+    background-color: darkslategray;
+    color: white;
+}

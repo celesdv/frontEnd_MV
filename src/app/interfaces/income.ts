@@ -15,8 +15,8 @@ export interface Income {
   client?: Client;
   bookingId: number;
   booking?: Booking;
-  userIs: number;
+  userId: number;
   User?: User;
   countId: number;
-  count: Count;
+  count?: Count;
 }

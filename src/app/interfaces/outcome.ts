@@ -11,12 +11,12 @@ export interface Outcome {
   date: string;
   detail: string;
   soft_delete?: boolean;
-  bookingId: number;
+  bookingId?: number;
   booking?: Booking;
-  userIs: number;
+  userId: number;
   User?: User;
   countId: number;
-  count: Count;
+  count?: Count;
   supplierId: number;
-  supplier: Supplier;
+  supplier?: Supplier;
 }

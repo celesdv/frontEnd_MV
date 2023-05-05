@@ -17,6 +17,7 @@
       <thead>
         <tr>
           <th scope="col">Referencia</th>
+          <th scope="col">Valor</th>
           <th scope="col">Fecha de Viaje</th>
           <th scope="col">Detalle</th>
           <th scope="col">Cliente</th>
@@ -28,10 +29,12 @@
       <tbody class="table-group-divider">
         <tr *ngFor="let c of bookings; index as i;">
           <td class="align-middle fw-semibold">{{c.reference}}</td>
+          <td class="align-middle fw-semibold">$ {{c.total}}</td>
           <td class="align-middle">{{c.travel_date.substring(0,10).split("-").reverse().join("-")}}</td>
           <td class="align-middle">{{c.detail}}</td>
           <td class="align-middle">{{c.client?.last_name}} {{c.client?.first_name}}</td>
-          <td class="align-middle">{{c.budget?.order?.name}} {{c.budget?.order?.destination}} {{c.budget?.order?.date}}
+          <td class="align-middle">
+            {{c.budget?.order?.name}} {{c.budget?.order?.destination}} {{c.budget?.order?.date}}
           </td>
           <td class="align-middle">
             <div *ngIf="c.paxes && c.paxes.length > 0">
@@ -52,7 +55,7 @@
           </td>
         </tr>
         <tr *ngIf="loading">
-          <td colspan="5">
+          <td colspan="8">
             <app-spinner></app-spinner>
           </td>
         </tr>

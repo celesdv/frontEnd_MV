@@ -45,6 +45,7 @@ export class FormBookingComponent implements OnInit {
       travel_date: ['', [Validators.required]],
       budgetId: [, [Validators.required]],
       clientId: [, [Validators.required]],
+      total: [, [Validators.required]],
     });
     this.id = Number(aRoute.snapshot.paramMap.get('id'));
   }
@@ -90,6 +91,7 @@ export class FormBookingComponent implements OnInit {
           travel_date: data.travel_date.substring(0, 10),
           budgetId: data.budgetId,
           clientId: data.clientId,
+          total: data.total
         });
         data.paxes.forEach((e) => {
           if (!e.soft_delete) {
@@ -119,9 +121,9 @@ export class FormBookingComponent implements OnInit {
     this.newP.splice(index, 1);
   }
 
-  deletePax(id: number, index:number) {
+  deletePax(id: number, index: number) {
     this.loading = true;
-    this.paxes = this.paxes.filter((pax: Pax) => pax.id != id);   
+    this.paxes = this.paxes.filter((pax: Pax) => pax.id != id);
     this.newP.splice(index, 1);
     this.loading = false;
   }
@@ -136,6 +138,7 @@ export class FormBookingComponent implements OnInit {
         budgetId: this.form.value.budgetId,
         clientId: this.form.value.clientId,
         paxes: this.paxes,
+        total: this.form.value.total
       };
       if (this.id !== 0) {
         booking.id = this.id;
@@ -147,6 +150,7 @@ export class FormBookingComponent implements OnInit {
             );
             this.loading = false;
             this.newP = [];
+            this.router.navigate(['/bookings']);
             this.form.reset();
           },
           error: (e: HttpErrorResponse) => {
@@ -164,6 +168,7 @@ export class FormBookingComponent implements OnInit {
             );
             this.loading = false;
             this.newP = [];
+            this.router.navigate(['/bookings']);
             this.form.reset();
           },
           error: (e: HttpErrorResponse) => {

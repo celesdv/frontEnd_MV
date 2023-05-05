@@ -19,6 +19,8 @@
           <th scope="col">Cuenta</th>
           <th scope="col">Alias</th>
           <th scope="col">CBU</th>
+          <th scope="col">Imp. Ingreso</th>
+          <th scope="col">Imp. Egreso</th>
           <th scope="col">Detalle</th>
           <th scope="col"></th>
         </tr>
@@ -28,6 +30,8 @@
           <td class="align-middle fw-semibold">{{c.name}}</td>
           <td class="align-middle">{{c.alias}}</td>
           <td class="align-middle">{{c.cbu}}</td>
+          <td class="align-middle">{{c.tax_income ? c.tax_income : 0}} %</td>
+          <td class="align-middle">{{c.tax_outcome ? c.tax_outcome : 0}} %</td>
           <td class="align-middle">{{c.detail}}</td>
           <td class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy

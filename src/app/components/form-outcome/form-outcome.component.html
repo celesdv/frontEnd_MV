@@ -1,0 +1,106 @@
+<div class="row mt-3">
+    <div class="col-lg-3 offset-lg-3">
+        <div class="card mb-3" style="min-width: 40rem;">
+            <div class="card-header text-center fw-bold fs-5">{{ action }} Egreso</div>
+            <div class="card-body">
+                <app-spinner *ngIf="loading"></app-spinner>
+                <form [formGroup]="form" (ngSubmit)="accept()" *ngIf="!loading">
+
+                    <div class="input-group mb-2" *ngIf="action != 'Agregar ' ">
+                        <span class="input-group-text" style="width: 30%; height: 100%;">Usuario</span>
+                        <select class="form-select" formControlName="userId">
+                            <option *ngFor="let c of users ; index as i;" value="{{c.id}}">{{c.first_name}}
+                                {{c.last_name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;"
+                            required>Fecha</span>
+                        <input type="date" class="form-control" formControlName="date">
+                    </div> 
+                    <p *ngIf="this.form.get('date')?.errors?.['required'] && form.get('date')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe seleccionar la fecha
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%; height: 100%;">Moneda</span>
+                        <select class="form-select" formControlName="currency">
+                            <option>ARS</option>
+                            <option>USD</option>
+                        </select>
+                    </div>
+                    <p *ngIf="this.form.get('currency')?.errors?.['required'] && form.get('currency')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe seleccionar la moneda
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Total
+                            ARS</span>
+                        <input type="number" class="form-control" formControlName="total">
+                    </div>
+                    <p *ngIf="this.form.get('total')?.errors?.['required'] && form.get('total')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe ingresar monto total en ARS
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;" required>Total
+                            USD</span>
+                        <input type="number" class="form-control" formControlName="total_usd">
+                    </div>
+                    <p *ngIf="this.form.get('total_usd')?.errors?.['required'] && form.get('total_usd')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe ingresar monto total en USD
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%; height: 100%;">Provedores</span>
+                        <select class="form-select" formControlName="supplierId">
+                            <option *ngFor="let c of suppliers ; index as i;" value="{{c.id}}">{{c.name}}</option>
+                        </select>
+                    </div>
+                    <p *ngIf="this.form.get('supplierId')?.errors?.['required'] && form.get('supplierId')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe seleccionar el proveedor
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%; height: 100%;">Reserva</span>
+                        <select class="form-select" formControlName="bookingId">
+                            <option *ngFor="let c of bookings ; index as i;" value="{{c.id}}">Referencia: {{c.reference}}</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%; height: 100%;">Cuenta</span>
+                        <select class="form-select" formControlName="countId">
+                            <option *ngFor="let c of counts ; index as i;" value="{{c.id}}">{{c.name}}</option>
+                        </select>
+                    </div>
+                    <p *ngIf="this.form.get('clientId')?.errors?.['required'] && form.get('clientId')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe seleccionar la cuenta
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%;">Detalle</span>
+                        <textarea class="form-control" formControlName="detail"></textarea>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-between m-2">
+                        <div ngxTippy data-tippy-content="Volver atras" routerLink="/accounting">
+                            <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+                        </div>
+                        <div>
+                            <button [disabled]="form.invalid" class="btn btn-success mt-2"
+                                type="submit">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

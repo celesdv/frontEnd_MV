@@ -20,6 +20,8 @@ import { BudgetResumenComponent } from './components/budget-resumen/budget-resum
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { FormBookingComponent } from './components/form-booking/form-booking.component';
 import { AccountingMenuComponent } from './components/accounting-menu/accounting-menu.component';
+import { FormIncomeComponent } from './components/form-income/form-income.component';
+import { FormOutcomeComponent } from './components/form-outcome/form-outcome.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -48,6 +50,10 @@ const routes: Routes = [
   { path: 'bookings/form', component: FormBookingComponent, canActivate: [AuthGuard] },
   { path: 'bookings/form/:id', component: FormBookingComponent, canActivate: [AuthGuard] },
   { path: 'accounting', component: AccountingMenuComponent, canActivate: [AuthGuard] },
+  { path: 'accounting/formIncome', component: FormIncomeComponent, canActivate: [AuthGuard] },
+  { path: 'accounting/formIncome/:id', component: FormIncomeComponent, canActivate: [AuthGuard] },
+  { path: 'accounting/formOutcome', component: FormOutcomeComponent, canActivate: [AuthGuard] },
+  { path: 'accounting/formOutcome/:id', component: FormOutcomeComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 

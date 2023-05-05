@@ -31,6 +31,8 @@ export class FormCountComponent implements OnInit {
       alias: [''],
       cbu: ['', [Validators.pattern("^[0-9]*$")]],
       detail: [''],
+      tax_income: [],
+      tax_outcome: [],
     });
     this.id = Number(aRoute.snapshot.paramMap.get('id'));
   }
@@ -51,6 +53,8 @@ export class FormCountComponent implements OnInit {
           name: data.name,
           alias: data.alias,
           cbu: data.cbu,
+          tax_income: data.tax_income,
+          tax_outcome: data.tax_outcome,
           detail: data.detail,
         });
       },
@@ -68,6 +72,8 @@ export class FormCountComponent implements OnInit {
         name: this.form.value.name,
         alias: this.form.value.alias,
         cbu: this.form.value.cbu,
+        tax_income: this.form.value.tax_income,
+        tax_outcome: this.form.value.tax_outcome,
         detail: this.form.value.detail
       };
 

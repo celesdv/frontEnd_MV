@@ -12,5 +12,6 @@ export interface Booking {
   clientId:number,
   client?: Client,
   budget?: Budget,
-  paxes: Pax[]
+  paxes: Pax[],
+  total: number
 }
