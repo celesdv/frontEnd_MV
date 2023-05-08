@@ -56,6 +56,10 @@ import { AccountingMenuComponent } from './components/accounting-menu/accounting
 import { AccountingsComponent } from './components/accountings/accountings.component';
 import { FormIncomeComponent } from './components/form-income/form-income.component';
 import { FormOutcomeComponent } from './components/form-outcome/form-outcome.component';
+import { ByClientComponent } from './components/by-client/by-client.component';
+import { ByCountComponent } from './components/by-count/by-count.component';
+import { BySupplierComponent } from './components/by-supplier/by-supplier.component';
+import { ByBookingComponent } from './components/by-booking/by-booking.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +109,10 @@ import { FormOutcomeComponent } from './components/form-outcome/form-outcome.com
     AccountingsComponent,
     FormIncomeComponent,
     FormOutcomeComponent,
+    ByClientComponent,
+    ByCountComponent,
+    BySupplierComponent,
+    ByBookingComponent,
   ],
   imports: [
     BrowserModule,

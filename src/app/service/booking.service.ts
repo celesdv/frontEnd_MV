@@ -29,6 +29,10 @@ export class BookingService {
     return this.http.get<Booking>(`${this.url}${this.api}${id}`);
   }
 
+  getByClient(id: number): Observable<Booking[]> {
+    return this.http.get<Booking[]>(`${this.url}${this.api}${id}/client`);
+  }
+
   addBooking(booking: Booking): Observable<Booking> {
     return this.http.post<Booking>(`${this.url}${this.api}`, booking);
   }

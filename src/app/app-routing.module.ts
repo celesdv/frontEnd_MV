@@ -22,6 +22,10 @@ import { FormBookingComponent } from './components/form-booking/form-booking.com
 import { AccountingMenuComponent } from './components/accounting-menu/accounting-menu.component';
 import { FormIncomeComponent } from './components/form-income/form-income.component';
 import { FormOutcomeComponent } from './components/form-outcome/form-outcome.component';
+import { ByClientComponent } from './components/by-client/by-client.component';
+import { ByCountComponent } from './components/by-count/by-count.component';
+import { BySupplierComponent } from './components/by-supplier/by-supplier.component';
+import { ByBookingComponent } from './components/by-booking/by-booking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -54,6 +58,10 @@ const routes: Routes = [
   { path: 'accounting/formIncome/:id', component: FormIncomeComponent, canActivate: [AuthGuard] },
   { path: 'accounting/formOutcome', component: FormOutcomeComponent, canActivate: [AuthGuard] },
   { path: 'accounting/formOutcome/:id', component: FormOutcomeComponent, canActivate: [AuthGuard] },
+  { path: 'byClient', component: ByClientComponent, canActivate: [AuthGuard] },
+  { path: 'byCount', component: ByCountComponent, canActivate: [AuthGuard] },
+  { path: 'bySupplier', component: BySupplierComponent, canActivate: [AuthGuard] },
+  { path: 'byBooking', component: ByBookingComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
