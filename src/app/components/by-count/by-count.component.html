@@ -1,1 +1,83 @@
-<p>by-count works!</p>
+<div class="card m-3">
+    <div class="d-grid gap-2 d-md-flex justify-content-between m-2 mx-3">
+        <div ngxTippy data-tippy-content="Volver atras" routerLink="/accounting">
+            <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+        </div>
+        <div class="d-md-flex justify-content-between gap-3 w-50 p-1">
+            <div class="input-group ml-2">
+                <span class="input-group-text" style="width: 30%; height: 100%;">Clientes</span>
+                <select class="form-select" #client (change)="onChange($event.target)"
+                    placeholder="Seleccione el cliente">
+                    <option selected value="{{null}}">Selecciona la Cuenta</option>
+                    <option *ngFor="let c of counts ; index as i;" value="{{c.id}}">{{c.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="!loading" class="m-3">
+        <div class="d-md-flex gap-2 justify-content-between">
+            <div *ngIf="countSelected" style="width: 40%" class="m-3">
+                <h4>Cuenta: {{countSelected.name}}</h4>
+                <p class="m-0" *ngIf="countSelected.alias != ''">Alias: {{countSelected.alias}}</p>
+                <p class="m-0" *ngIf="countSelected.cbu != ''">CBU: {{countSelected.cbu}}</p>
+            </div>
+            <div *ngIf="totalIncomes> 0 || totalOutcomes > 0" style="width: 30%" class="m-3">
+                <div class="card p-2 text-bg-primary">
+                    <h4>Cuenta corriente:</h4>
+                    <h5 class="m-0 mx-3">
+                        <span *ngIf="currency === 'USD'">USD </span>
+                        $ {{total}}
+                        <span *ngIf="total < 0"> adeudado</span>
+                        <span *ngIf="total > 0"> a favor</span>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="incomes.length > 0" class="m-3">
+            <h5 class="card-title ">Registro de Ingresos y Egresos</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Moneda</th>
+                        <th scope="col">Total ARS</th>
+                        <th scope="col">Total USD</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cliente/Proveedor</th>
+                        <th scope="col">Usuario</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let c of datos; index as i;">
+                    <tr *ngIf="(currency === 'ARS' && c.total > 0) || (currency === 'USD' && c.total_usd > 0)"
+                        class="bg-success-subtle">
+                        <td class="align-middle">{{c.currency}}</td>
+                        <td class="align-middle">$ {{c.total.toFixed(2)}} ARS</td>
+                        <td class="align-middle">$ {{c.total_usd}} USD</td>
+                        <td class="align-middle">{{c.date.substring(0,10).split('-').reverse().join('-')}}</td>
+                        <td class="align-middle">
+                            {{c.clientId ? c.client.first_name+" "+c.client.last_name : "" }}
+                        </td>
+                        <td class="align-middle">
+                            {{c.userId ? c.user.first_name+" "+c.user.last_name : "" }}
+                        </td>
+                    </tr>
+                    <tr *ngIf="(currency === 'ARS' && c.total < 0) || (currency === 'USD' && c.total_usd < 0)"
+                        class="bg-danger-subtle">
+                        <td class="align-middle">{{c.currency}}</td>
+                        <td class="align-middle">$ {{c.total.toFixed(2)}} ARS</td>
+                        <td class="align-middle">$ {{c.total_usd}} USD</td>
+                        <td class="align-middle">{{c.date.substring(0,10).split('-').reverse().join('-')}}</td>
+                        <td class="align-middle">
+                            {{c.supplierId ? c.supplier.name : "" }}
+                        </td>
+                        <td class="align-middle">
+                            {{c.userId ? c.user.first_name+" "+c.user.last_name : "" }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

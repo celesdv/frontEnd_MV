@@ -1,1 +1,80 @@
-<p>by-supplier works!</p>
+<div class="card m-3">
+    <div class="d-grid gap-2 d-md-flex justify-content-between m-2 mx-3">
+        <div ngxTippy data-tippy-content="Volver atras" routerLink="/accounting">
+            <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+        </div>
+        <div class="d-md-flex justify-content-between gap-3 w-50 p-1">
+            <div class="input-group ml-2">
+                <span class="input-group-text" style="width: 30%; height: 100%;">Proveedores</span>
+                <select class="form-select" #client (change)="onChange($event.target)"
+                    placeholder="Seleccione el proveedor">
+                    <option selected value="{{null}}">Selecciona el proveedor</option>
+                    <option *ngFor="let c of suppliers ; index as i;" value="{{c.id}}">{{c.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="!loading" class="m-3">
+        <div class="d-md-flex gap-2 justify-content-between">
+            <div *ngIf="supplierSelected" style="width: 40%" class="m-3">
+                <h4>Proveedor: {{supplierSelected.name}}</h4>
+                <p class="m-0">Email: {{supplierSelected.email}}</p>
+                <p class="m-0">Télefono: {{supplierSelected.phone}}</p>
+            </div>
+            <div style="width: 30%">
+                <div *ngIf="bookings.length > 0" class="d-md-flex gap-2 m-3">
+                    <h4>Reservas:</h4>                
+                    <select class="form-select" size="2">
+                        <option *ngFor="let c of bookings">{{c.reference}}</option>
+                    </select>
+                </div>                
+            </div>
+            <div style="width: 30%" class="m-3" *ngIf="supplierSelected" >
+                <div class="card p-2 text-bg-primary">
+                    <h4>Cuenta corriente:</h4>
+                    <h5 class="m-0 mx-3">
+                        $ {{total.toFixed(2)}}
+                        <span *ngIf="total > 0"> adeudado</span>
+                        <span *ngIf="total < 0"> a favor</span>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="outcomes.length > 0" class="m-3">
+            <h5 class="card-title ">Registro de pagos</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Moneda</th>
+                        <th scope="col">Total ARS</th>
+                        <th scope="col">Total USD</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Reserva</th>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">Usuario</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let c of outcomes; index as i;">
+                    <tr>
+                        <td class="align-middle">{{c.currency}}</td>
+                        <td class="align-middle">$ {{c.total.toFixed(2)}} ARS</td>
+                        <td class="align-middle">$ {{c.total_usd.toFixed(2)}} USD</td>
+                        <td class="align-middle">{{c.date.substring(0,10).split('-').reverse().join('-')}}</td>
+                        <td class="align-middle">
+                            {{c.bookingId ? c.booking?.reference : "" }}                         
+                        </td>
+                        <td class="align-middle" >
+                            {{c.countId ? c.count?.name : "" }}                            
+                        </td>
+                        <td class="align-middle">
+                            {{c.userId ? c.user?.first_name+" "+c.user?.last_name : "" }}                       
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

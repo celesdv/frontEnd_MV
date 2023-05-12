@@ -1,6 +1,6 @@
 <div class="card m-3">
     <div class="d-grid gap-2 d-md-flex justify-content-between m-2 mx-3">
-        <div ngxTippy data-tippy-content="Volver atras" routerLink="/dashboard">
+        <div ngxTippy data-tippy-content="Volver atras" routerLink="/accounting">
             <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
         </div>
         <div class="d-md-flex justify-content-between gap-3 w-50 p-1">
@@ -55,15 +55,21 @@
                         <th scope="col">Usuario</th>
                     </tr>
                 </thead>
-                <tbody class="table-group-divider">
-                    <tr *ngFor="let c of incomes; index as i;">
+                <tbody *ngFor="let c of incomes; index as i;">
+                    <tr>
                         <td class="align-middle">{{c.currency}}</td>
                         <td class="align-middle">$ {{c.total}} ARS</td>
                         <td class="align-middle">$ {{c.total_usd}} USD</td>
                         <td class="align-middle">{{c.date.substring(0,10).split('-').reverse().join('-')}}</td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
-                        <td class="align-middle"></td>
+                        <td class="align-middle">
+                            {{c.bookingId ? c.booking?.reference : "" }}                         
+                        </td>
+                        <td class="align-middle" >
+                            {{c.countId ? c.count?.name : "" }}                            
+                        </td>
+                        <td class="align-middle">
+                            {{c.userId ? c.user?.first_name+" "+c.user?.last_name : "" }}                       
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -2,11 +2,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Booking } from 'src/app/interfaces/booking';
 import { Client } from 'src/app/interfaces/client';
+import { Count } from 'src/app/interfaces/count';
 import { Income } from 'src/app/interfaces/income';
+import { User } from 'src/app/interfaces/user';
 import { BookingService } from 'src/app/service/booking.service';
 import { ClientService } from 'src/app/service/client.service';
+import { CountService } from 'src/app/service/count.service';
 import { ErrorService } from 'src/app/service/error.service';
 import { IncomeService } from 'src/app/service/income.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-by-client',
@@ -27,7 +31,9 @@ export class ByClientComponent implements OnInit {
     private errorService: ErrorService,
     private clientService: ClientService,
     private bookingService: BookingService,
-    private incomeService: IncomeService
+    private incomeService: IncomeService,
+    private countService: CountService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {

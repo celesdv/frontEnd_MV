@@ -1,6 +1,7 @@
 import { Budget } from "./budget";
 import { Client } from "./client";
 import { Pax } from "./pax";
+import { Supplier } from "./supplier";
 
 export interface Booking {
   id?: number;
@@ -13,5 +14,7 @@ export interface Booking {
   client?: Client,
   budget?: Budget,
   paxes: Pax[],
-  total: number
+  total: number,
+  supplierId?: number,
+  supplier?: Supplier
 }

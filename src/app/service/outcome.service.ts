@@ -29,15 +29,15 @@ export class OutcomeService {
   }
 
   getBySupplier(id: number): Observable<Outcome[]> {
-    return this.http.get<Outcome[]>(`${this.url}${this.api}supplier/${id}`);
+    return this.http.get<Outcome[]>(`${this.url}${this.api}${id}/supplier`);
   }
 
   getByCount(id: number): Observable<Outcome[]> {
-    return this.http.get<Outcome[]>(`${this.url}${this.api}count/${id}`);
+    return this.http.get<Outcome[]>(`${this.url}${this.api}${id}/count`);
   }
 
   getByBooking(id: number): Observable<Outcome[]> {
-    return this.http.get<Outcome[]>(`${this.url}${this.api}booking/${id}`);
+    return this.http.get<Outcome[]>(`${this.url}${this.api}${id}/booking`);
   }
 
   addOutcome(outcome: Outcome): Observable<Outcome> {

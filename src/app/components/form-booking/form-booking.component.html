@@ -59,11 +59,20 @@
                         <span class="input-group-text">$</span>
                         <input type="number" class="form-control" formControlName="total">
                         <span class="input-group-text">.00</span>
-                      </div>
-                      <p *ngIf="this.form.get('total')?.errors?.['required'] && form.get('total')?.touched"
+                    </div>
+                    <p *ngIf="this.form.get('total')?.errors?.['required'] && form.get('total')?.touched"
                         class="text-danger fw-semibold ms-2" style="font-size: 12px;">
                         Debe ingresar el precio
-                      </p>
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" style="width: 30%; height: 100%;">Proveedor</span>
+                        <select class="form-select mb-2" formControlName="supplierId">
+                            <option *ngFor="let c of suppliers ; index as i;" value="{{c.id}}">
+                                {{c.name}}
+                            </option>
+                        </select>
+                    </div>
 
                     <div class="input-group mb-2">
                         <span class="input-group-text" style="width: 30%;">Detalle</span>

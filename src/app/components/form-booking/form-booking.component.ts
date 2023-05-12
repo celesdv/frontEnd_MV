@@ -7,11 +7,13 @@ import { Booking } from 'src/app/interfaces/booking';
 import { Budget } from 'src/app/interfaces/budget';
 import { Client } from 'src/app/interfaces/client';
 import { Pax } from 'src/app/interfaces/pax';
+import { Supplier } from 'src/app/interfaces/supplier';
 import { BookingService } from 'src/app/service/booking.service';
 import { BudgetService } from 'src/app/service/budget.service';
 import { ClientService } from 'src/app/service/client.service';
 import { ErrorService } from 'src/app/service/error.service';
 import { PaxService } from 'src/app/service/pax.service';
+import { SupplierService } from 'src/app/service/supplier.service';
 
 @Component({
   selector: 'app-form-booking',
@@ -28,6 +30,7 @@ export class FormBookingComponent implements OnInit {
   paxes: Pax[] = [];
   newP: any[] = [];
   show: boolean = true;
+  suppliers: Supplier[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +40,8 @@ export class FormBookingComponent implements OnInit {
     private aRoute: ActivatedRoute,
     private bookingService: BookingService,
     private budgetService: BudgetService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private supplierService: SupplierService
   ) {
     this.form = this.formBuilder.group({
       reference: ['', [Validators.required]],
@@ -46,6 +50,7 @@ export class FormBookingComponent implements OnInit {
       budgetId: [, [Validators.required]],
       clientId: [, [Validators.required]],
       total: [, [Validators.required]],
+      supplierId: []
     });
     this.id = Number(aRoute.snapshot.paramMap.get('id'));
   }
@@ -57,6 +62,18 @@ export class FormBookingComponent implements OnInit {
     }
     this.getBudgets();
     this.getClients();
+    this.getSuppliers();
+  }
+
+  getSuppliers() {
+    this.supplierService.getSuppliers().subscribe({
+      next: (data: Supplier[]) => {
+        this.suppliers = data;
+      },
+      error: (e: HttpErrorResponse) => {
+        this.errorService.msjError(e);
+      },
+    })
   }
 
   getClients() {
@@ -91,7 +108,8 @@ export class FormBookingComponent implements OnInit {
           travel_date: data.travel_date.substring(0, 10),
           budgetId: data.budgetId,
           clientId: data.clientId,
-          total: data.total
+          total: data.total,
+          supplierId: data.supplierId
         });
         data.paxes.forEach((e) => {
           if (!e.soft_delete) {
@@ -138,7 +156,8 @@ export class FormBookingComponent implements OnInit {
         budgetId: this.form.value.budgetId,
         clientId: this.form.value.clientId,
         paxes: this.paxes,
-        total: this.form.value.total
+        total: this.form.value.total,
+        supplierId: this.form.value.supplierId
       };
       if (this.id !== 0) {
         booking.id = this.id;
