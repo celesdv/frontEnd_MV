@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { HotObservable } from 'rxjs/internal/testing/HotObservable';
 import { Extra } from 'src/app/interfaces/extras';
 import { ErrorService } from 'src/app/service/error.service';
 import { ExtraService } from 'src/app/service/extra.service';
@@ -17,7 +18,7 @@ export class FormExtraComponent implements OnInit {
   @Input() ext!: Extra;
   @Output() newExtraEvent = new EventEmitter<Extra>();
   @Output() closeExtraEvent = new EventEmitter<void>();
-  @Output() deleteExtraEvent = new EventEmitter<void>();
+  @Output() deleteExtraEvent = new EventEmitter<number>();
 
   added: boolean = false;
   loading: boolean = false;
@@ -102,21 +103,28 @@ export class FormExtraComponent implements OnInit {
   }
 
   close() {
-    this.closeExtraEvent.emit();
+    if(!this.ext) {
+      this.closeExtraEvent.emit();
+    }    
     this.added = true;
   }
 
   deleteExtra(id: number) {
     console.log(id);
-    this.extraService.deleteExtra(id).subscribe({
-      next: () => {
-        this.toastr.info('Registro Eliminado', 'Exito');
-        this.deleteExtraEvent.emit();
-      },
-      error: (e: HttpErrorResponse) => {
-        this.errorService.msjError(e);
-        this.loading = false;
-      },
-    });
+    if(id) {
+      this.extraService.deleteExtra(id).subscribe({
+        next: () => {
+          this.toastr.info('Registro Eliminado', 'Exito');
+          this.deleteExtraEvent.emit(id);
+        },
+        error: (e: HttpErrorResponse) => {
+          this.errorService.msjError(e);
+          this.loading = false;
+        },
+      });
+    } else {
+      this.deleteExtraEvent.emit(id);
+    }
+    
   }
 }

@@ -13,7 +13,7 @@
   <div class="card-body">
     <h5 class="card-title ">Listado de Pedidos</h5>
 
-    <table class="table" *ngIf="!loading">
+    <table class="table table-hover" *ngIf="!loading">
       <thead>
         <tr>
           <th scope="col"></th>
@@ -42,7 +42,7 @@
           <td class="align-middle text-center">{{c.toddler + c.child + c.adult + c.teen +
             c.senior}}</td>
           <td class="align-middle">{{c.email}}</td>
-          <td class="align-middle">{{c.phone}}</td>
+          <td class="align-middle">{{c.phone | phoneMask}}</td>
           <td class="align-middle">{{c.detail}}</td>
           <td class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
@@ -67,7 +67,7 @@
 
 <div class="card mt-3" *ngIf="router.url === '/dashboard'">
   <div class="table-responsive p-3">
-    <table class="table table-sm" *ngIf="!loading">
+    <table class="table table-borderless align-middle" *ngIf="!loading">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
@@ -80,7 +80,7 @@
           <td class="align-middle" *ngIf="c.is_budget === false">{{c.name}}</td>
           <td class="align-middle text-center" *ngIf="c.is_budget === false">{{c.destination}}</td>
           <td class="d-grid d-md-flex justify-content-md-end" *ngIf="c.is_budget === false">
-            <div class="p-2 bg-success text-center rounded-circle" style="width: 2.5rem;" ngxTippy
+            <div class="p-2 bg-success text-center rounded-circle " style="width: 2.5rem;" ngxTippy
               data-tippy-content="Presupuestar" (click)="toBudget(c.id!)">
               <i class="bi bi-file-spreadsheet" style="color: white;"></i>
             </div>

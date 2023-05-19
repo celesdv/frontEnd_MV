@@ -67,7 +67,7 @@
                             <app-form-hotel (newHotelEvent)="addNewHotel($event, i)" [index]="i" 
                                 [accommodationId]="id"
                                 [hot]="hotels[i]" (closeHotelEvent)="deleteH(i)"
-                                (deleteHotelEvent)="deleteHotel(i)">
+                                (deleteHotelEvent)="deleteHotel($event, i)">
                             </app-form-hotel>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             <app-form-extra (newExtraEvent)="addNewExtra($event, i)" [index]="i" 
                                 [accommodationId]="id"
                                 [ext]="extras[i]" (closeExtraEvent)="deleteE(i)"
-                                (deleteExtraEvent)="deleteExtra(i)">
+                                (deleteExtraEvent)="deleteExtra($event, i)">
                             </app-form-extra>
                         </div>
                     </div>

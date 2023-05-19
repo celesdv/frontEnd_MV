@@ -13,7 +13,7 @@
   <div class="card-body">
     <h5 class="card-title ">Listado de Presupuestos</h5>
 
-    <table class="table" *ngIf="!loading">
+    <table class="table table-hover" *ngIf="!loading">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
@@ -39,44 +39,46 @@
             </div>
           </td>
           <td class="align-middle">
-            <p *ngIf="c.flights && c.flights.length > 0">
-              Aereos:
+            <p *ngIf="c.flights && c.flights.length > 0">              
+              <i class="bi bi-airplane-fill"></i> Aereos:
               <span *ngFor="let i of c.flights">
-                <span *ngIf="i.soft_delete === false">{{i.origin}}/{{i.destination}} - </span>
+                <span *ngIf="!i.soft_delete">
+                  {{i.origin}}/{{i.destination}} - 
+                </span>
               </span>
             </p>
             <p *ngIf="c.accommodation && c.accommodation.length > 0">
-              Alojamientos:
+              <i class="bi bi-building-fill"></i> Alojamientos:
               <span *ngFor="let i of c.accommodation">
                 <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
               </span>
             </p>
             <p *ngIf="c.transfers && c.transfers.length > 0">
-              Traslados:
+              <i class="bi bi-car-front-fill"></i> Traslados:
               <span *ngFor="let i of c.transfers">
                 <span *ngIf="i.soft_delete === false">{{i.origin}}/{{i.destination}} - </span>
               </span>
             </p>
             <p *ngIf="c.assistance && c.assistance.length > 0">
-              Asistencias:
+              <i class="bi bi-bandaid-fill"></i> Asistencias:
               <span *ngFor="let i of c.assistance">
                 <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
               </span>
             </p>
             <p *ngIf="c.excursions && c.excursions.length > 0">
-              Excursiones:
+              <i class="bi bi-signpost-2-fill"></i> Excursiones:
               <span *ngFor="let i of c.excursions">
                 <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
               </span>
             </p>
             <p *ngIf="c.canneds && c.canneds.length > 0">
-              Enlatados:
+              <i class="bi bi-box-fill"></i> Enlatados:
               <span *ngFor="let i of c.canneds">
                 <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
               </span>
             </p>
             <p *ngIf="c.items && c.items.length > 0">
-              Items Extras:
+              <i class="bi bi-bag-plus-fill"></i> Items Extras:
               <span *ngFor="let i of c.items">
                 <span *ngIf="i.soft_delete === false">{{i.name}} - </span>
               </span>
@@ -87,7 +89,7 @@
           </td>
           <td class="align-middle">
             <p>
-              {{c.total? "$ "+c.total : "El presupuesto no esta finalizado"}}
+              {{c.total? (c.total | currency) : "El presupuesto no esta finalizado"}}
             </p>
           </td>
           <td class="align-middle">

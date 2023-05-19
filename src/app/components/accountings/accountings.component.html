@@ -7,10 +7,11 @@
             <div class="card-body">
                 <h5 class="card-title">Cuenta corriente en ARS</h5>
                 <h6 *ngIf="(totalIncomeARS + totalOutcomeARS) > 0">
-                    Total disponible en ARS {{totalIncomeARS + totalOutcomeARS}}$
+                    Total disponible en ARS {{totalIncomeARS + totalOutcomeARS | currency}}
                 </h6>
                 <h6 *ngIf="(totalIncomeARS + totalOutcomeARS) < 0">
-                    Total adeudado en ARS <span class="text-danger">{{totalIncomeARS + totalOutcomeARS}}</span>$
+                    Total adeudado en ARS <span class="text-danger">{{totalIncomeARS + totalOutcomeARS |
+                        currency}}</span>
                 </h6>
             </div>
         </div>
@@ -31,9 +32,9 @@
                     </thead>
                     <tbody class="table-group-divider">
                         <tr *ngFor="let c of incomeARS; index as i;">
-                            <td class="align-middle fw-semibold text-success">${{c.total}}</td>
+                            <td class="align-middle fw-semibold text-success">{{c.total | currency}}</td>
                             <td class="align-middle text-success">
-                                {{c.date.substring(0,10).split("-").reverse().join("-")}}</td>
+                                {{c.date | date: 'dd/MM/yyyy'}}</td>
                             <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
                                     data-tippy-content="Editar" routerLink="formIncome/{{c.id}}">
@@ -50,7 +51,7 @@
             </div>
         </div>
     </div>
-    <div class="col p-2 " >
+    <div class="col p-2 ">
         <div class="card scroll">
             <div class="card-header sticky-top ars">
                 <h5 class="card-title">Egresos ARS</h5>
@@ -66,9 +67,9 @@
                     </thead>
                     <tbody class="table-group-divider">
                         <tr *ngFor="let c of outcomeARS; index as i;">
-                            <td class="align-middle fw-semibold text-danger">${{c.total.toFixed(2)}}</td>
+                            <td class="align-middle fw-semibold text-danger">{{c.total | currency}}</td>
                             <td class="align-middle text-danger">
-                                {{c.date.substring(0,10).split("-").reverse().join("-")}}</td>
+                                {{c.date | date: 'dd/MM/yyyy'}}</td>
                             <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
                                     data-tippy-content="Editar" routerLink="formOutcome/{{c.id}}">
@@ -92,10 +93,11 @@
             <div class="card-body">
                 <h5 class="card-title">Cuenta corriente en USD</h5>
                 <h6 *ngIf="(totalIncomeUSD + totalOutcomeUSD) > 0">
-                    Total disponible en USD {{totalIncomeUSD + totalOutcomeUSD}}$
+                    Total disponible en USD {{totalIncomeUSD + totalOutcomeUSD | currency}}
                 </h6>
                 <h6 *ngIf="(totalIncomeUSD + totalOutcomeUSD) < 0">
-                    Total adeudado en USD <span class="text-danger">{{totalIncomeUSD + totalOutcomeUSD}}</span>$
+                    Total adeudado en USD <span class="text-danger">{{totalIncomeUSD + totalOutcomeUSD |
+                        currency}}</span>
 
                 </h6>
             </div>
@@ -106,7 +108,7 @@
             <div class="card-header sticky-top usd">
                 <h5 class="card-title">Ingresos USD</h5>
             </div>
-            <div class="card-body">                
+            <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
@@ -117,9 +119,9 @@
                     </thead>
                     <tbody class="table-group-divider">
                         <tr *ngFor="let c of incomeUSD; index as i;">
-                            <td class="align-middle fw-semibold text-success">${{c.total_usd}}</td>
+                            <td class="align-middle fw-semibold text-success">{{c.total_usd | currency}}</td>
                             <td class="align-middle text-success">
-                                {{c.date.substring(0,10).split("-").reverse().join("-")}}</td>
+                                {{c.date | date: 'dd/MM/yyyy' }}</td>
                             <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
                                     data-tippy-content="Editar" routerLink="formIncome/{{c.id}}">
@@ -142,7 +144,7 @@
             <div class="card-header sticky-top usd">
                 <h5 class="card-title">Egresos USD</h5>
             </div>
-            <div class="card-body">                
+            <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
@@ -153,9 +155,9 @@
                     </thead>
                     <tbody class="table-group-divider">
                         <tr *ngFor="let c of outcomeUSD; index as i;">
-                            <td class="align-middle fw-semibold text-danger">${{c.total_usd}}</td>
+                            <td class="align-middle fw-semibold text-danger">{{c.total_usd | currency}}</td>
                             <td class="align-middle text-danger">
-                                {{c.date.substring(0,10).split("-").reverse().join("-")}}</td>
+                                {{c.date | date: 'dd/MM/yyyy'}}</td>
                             <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
                                     data-tippy-content="Editar" routerLink="formOutcome/{{c.id}}">

@@ -62,6 +62,7 @@ const routes: Routes = [
   { path: 'byCount', component: ByCountComponent, canActivate: [AuthGuard] },
   { path: 'bySupplier', component: BySupplierComponent, canActivate: [AuthGuard] },
   { path: 'byBooking', component: ByBookingComponent, canActivate: [AuthGuard] },
+  { path: 'byBooking/:id', component: ByBookingComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 

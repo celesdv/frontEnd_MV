@@ -13,7 +13,7 @@
   <div class="card-body">
     <h5 class="card-title">Listado de Cuentas</h5>
 
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Referencia</th>
@@ -29,8 +29,8 @@
       <tbody class="table-group-divider">
         <tr *ngFor="let c of bookings; index as i;">
           <td class="align-middle fw-semibold">{{c.reference}}</td>
-          <td class="align-middle fw-semibold">$ {{c.total}}</td>
-          <td class="align-middle">{{c.travel_date.substring(0,10).split("-").reverse().join("-")}}</td>
+          <td class="align-middle fw-semibold">{{c.total | currency}}</td>
+          <td class="align-middle">{{c.travel_date | date: 'dd/MM/yyyy'}}</td>
           <td class="align-middle">{{c.detail}}</td>
           <td class="align-middle">{{c.client?.last_name}} {{c.client?.first_name}}</td>
           <td class="align-middle">
@@ -39,7 +39,10 @@
           <td class="align-middle">
             <div *ngIf="c.paxes && c.paxes.length > 0">
               <div *ngFor="let p of c.paxes">
-                <span *ngIf="!p.soft_delete">{{p.last_name}} {{p.first_name}}</span>
+                <div *ngIf="!p.soft_delete">
+                  <i class="bi bi-person-fill"></i>
+                  <span *ngIf="!p.soft_delete">{{p.last_name}} {{p.first_name}}</span>
+                </div>                
               </div>
             </div>
           </td>

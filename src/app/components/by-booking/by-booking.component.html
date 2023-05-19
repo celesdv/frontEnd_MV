@@ -1,1 +1,125 @@
-<p>by-booking works!</p>
+<div class="card m-3">
+    <div class="d-grid gap-2 d-md-flex justify-content-between m-2 mx-3">
+        <div ngxTippy data-tippy-content="Volver atras" routerLink="/accounting">
+            <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+        </div>
+        <div class="d-md-flex justify-content-between gap-3 w-50 p-1" *ngIf="!id">
+            <div class="input-group ml-2">
+                <span class="input-group-text" style="width: 30%; height: 100%;">Reservas</span>
+                <select class="form-select" #client (change)="onChange($event.target)"
+                    placeholder="Seleccione el cliente">
+                    <option selected value="{{null}}">Selecciona la Cuenta</option>
+                    <option *ngFor="let c of bookings ; index as i;" value="{{c.id}}">{{c.reference}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="!loading" class="m-3">
+        <div class="d-md-flex gap-2 justify-content-between">
+            <div *ngIf="bookingSelected" style="width: 40%" class="m-3">
+                <h4>Reserva: {{bookingSelected.reference}}</h4>
+                <p class="m-0" *ngIf="bookingSelected.budget?.order?.name != ''">Presupuetos:
+                    {{bookingSelected.budget?.order?.name}}</p>
+                <p class="m-0" *ngIf="bookingSelected.budget?.order?.destination != ''">Destino:
+                    {{bookingSelected.budget?.order?.destination}}</p>
+            </div>
+            <div *ngIf="bookingSelected" style="width: 30%" class="m-3">
+                <div class="card p-2 text-bg-primary">
+                    <h4>Valor reserva:</h4>
+                    <h5 class="m-0 mx-3">
+                        {{bookingSelected.total | currency }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="bookingSelected" class="card p-2 text-bg-success">
+            <h4>Ingresos a cuenta:
+                <span class="m-0 mx-3">
+                    {{bookingSelected.total - totalIncomes | currency}}
+                    <span *ngIf="(bookingSelected.total - totalIncomes) > 0">Adeudado por el cliente</span>
+                    <span *ngIf="(bookingSelected.total - totalIncomes) < 0">A favor del cliente</span>
+                </span>
+            </h4>
+        </div>
+        <div *ngIf="incomes.length === 0 && bookingSelected">No se han registrado Pagos</div>
+        <div *ngIf="incomes.length > 0" class="m-3">
+            <h5 class="card-title ">Registro de Ingresos</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Moneda</th>
+                        <th scope="col">Total ARS</th>
+                        <th scope="col">Total USD</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Usuario</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let c of incomes; index as i;">
+                    <tr>
+                        <td class="align-middle">{{c.currency}}</td>
+                        <td class="align-middle">{{c.total | currency}} ARS</td>
+                        <td class="align-middle">{{c.total_usd | currency }} USD</td>
+                        <td class="align-middle">{{c.date | date: 'dd/MM/yyyy'}}</td>
+                        <td class="align-middle">
+                            {{c.countId ? c.count?.name : "" }}
+                        </td>
+                        <td class="align-middle">
+                            {{c.clientId ? c.client?.first_name+""+c.client?.last_name : "" }}
+                        </td>
+                        <td class="align-middle">
+                            {{c.userId ? c.user?.first_name+" "+c.user?.last_name : "" }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="bookingSelected" class="card p-2 text-bg-warning">
+            <h4>Ingresos a cuenta:
+                <span class="m-0 mx-3">
+                    {{bookingSelected.total - totalOutcomes | currency}}
+                    <span *ngIf="(bookingSelected.total - totalOutcomes) > 0">Adeudado al proveedor</span>
+                    <span *ngIf="(bookingSelected.total - totalOutcomes) < 0">A favor de la empresa</span>
+                </span>
+            </h4>
+        </div>
+        <div *ngIf="outcomes.length === 0 && bookingSelected">No se han registrado Pagos</div>
+        <div *ngIf="outcomes.length > 0" class="m-3">
+            <h5 class="card-title ">Registro de Egresos</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Moneda</th>
+                        <th scope="col">Total ARS</th>
+                        <th scope="col">Total USD</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">Proveedor</th>
+                        <th scope="col">Usuario</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let c of outcomes; index as i;">
+                    <tr>
+                        <td class="align-middle">{{c.currency}}</td>
+                        <td class="align-middle">{{c.total | currency}} ARS</td>
+                        <td class="align-middle">{{c.total_usd | currency}} USD</td>
+                        <td class="align-middle">{{c.date | date: 'dd/MM/yyyy'}}</td>
+                        <td class="align-middle">
+                            {{c.countId ? c.count?.name : "" }}
+                        </td>
+                        <td class="align-middle">
+                            {{c.supplierId ? c.supplier?.name : "" }}
+                        </td>
+                        <td class="align-middle">
+                            {{c.userId ? c.user?.first_name+" "+c.user?.last_name : "" }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

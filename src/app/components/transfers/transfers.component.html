@@ -18,7 +18,7 @@
           <td class="align-middle">{{c.origin}} | {{c.destination}}</td>
           <td class="align-middle">{{c.type}}</td>
           <td class="align-middle">{{c.conveyance}}</td>
-          <td class="align-middle">$ {{c.value + c.tax}} </td>
+          <td class="align-middle">{{c.value + c.tax | currency}} </td>
           <td class="align-middle"><span *ngIf="c.supplier">{{c.supplier.name}}</span></td>
           <td class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy

@@ -13,7 +13,7 @@
   <div class="card-body">
     <h5 class="card-title">Listado de Clientes</h5>
 
-    <table class="table" *ngIf="!loading">
+    <table class="table table-hover" *ngIf="!loading">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
@@ -31,8 +31,8 @@
           <td class="align-middle fw-semibold">{{c.last_name}}</td>
           <td class="align-middle">{{c.email}}</td>
           <td class="align-middle">{{c.address}}</td>
-          <td class="align-middle">{{c.phone}}</td>
-          <td class="align-middle">{{c.cuil}}</td>
+          <td class="align-middle">{{c.phone | phoneMask}}</td>
+          <td class="align-middle">{{c.cuil | cuilMask}}</td>
           <td class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
               data-tippy-content="Editar" routerLink="form/{{c.id}}">

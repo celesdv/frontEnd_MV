@@ -40,12 +40,10 @@
                             <div *ngIf="!s.soft_delete">
                                 <p class="m-1 ms-3">Tramo: {{s.name}}</p>
                                 <p class="m-1 ms-3">Salida:
-                                    {{s.calendar_origin.substring(0,10).split('-').reverse().join('/')}}
-                                    {{s.calendar_origin.substring(11, 16).concat('hs')}}
+                                    {{s.calendar_origin | date: 'dd/MM/yyyy hh:mm'}}
                                 </p>
                                 <p class="m-1 ms-3">Llegada:
-                                    {{s.calendar_destination.substring(0,10).split('-').reverse().join('/')}}
-                                    {{s.calendar_destination.substring(11, 16).concat('hs')}}
+                                    {{s.calendar_destination | date: 'dd/MM/yyyy hh:mm'}}
                                 </p>
                                 <p class="m-1 ms-3">Compañia: {{s.company ? s.company : "Sin compañia"}}</p>
                                 <p class="m-1 ms-3">Detalle: {{s.detail ? s.detail : "Sin detalle"}}</p>
@@ -137,7 +135,7 @@
         </div>
         
         <div class="ms-3">
-            <h5 class="text-center">Valor Total: {{budget.total}}</h5>
+            <h5 class="text-center">Valor Total: {{budget.total | currency}}</h5>
             <h5 class="text-center">Detalle: {{budget.detail ? budget.detail : "Sin detalle"}}</h5>
         </div>
 

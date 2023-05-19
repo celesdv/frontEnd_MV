@@ -69,7 +69,7 @@
             <div *ngFor="let c of newI; index as i;">
               <app-form-section (newSectionEvent)="addNewSection($event, i)" [flightId]="id" [index]="i"
                 [sec]="sections[i]" (closeSectionEvent)="deleteI(i)"
-                (deleteSectionEvent)="deleteSection(i)"></app-form-section>
+                (deleteSectionEvent)="deleteSection($event, i)"></app-form-section>
             </div>
           </div>
 

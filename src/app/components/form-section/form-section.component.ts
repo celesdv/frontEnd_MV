@@ -17,7 +17,7 @@ export class FormSectionComponent implements OnInit {
   @Input() sec!: Section;
   @Output() newSectionEvent = new EventEmitter<Section>();
   @Output() closeSectionEvent = new EventEmitter<void>();
-  @Output() deleteSectionEvent = new EventEmitter<void>();
+  @Output() deleteSectionEvent = new EventEmitter<number>();
 
   added: boolean = false;
   loading: boolean = false;
@@ -142,21 +142,28 @@ export class FormSectionComponent implements OnInit {
   }
 
   close() {
-    this.closeSectionEvent.emit();
+    if(!this.sec) {
+      this.closeSectionEvent.emit();
+    }    
     this.added = true;
   }
 
   deleteSection(id: number) {
     console.log(id);
-    this.sectionService.deleteSection(id).subscribe({
-      next: () => {
-        this.toastr.info('Registro Eliminado', 'Exito');
-        this.deleteSectionEvent.emit();
-      },
-      error: (e: HttpErrorResponse) => {
-        this.errorService.msjError(e);
-        this.loading = false;
-      },
-    });
+    if(id) {
+      this.sectionService.deleteSection(id).subscribe({
+        next: () => {
+          this.toastr.info('Registro Eliminado', 'Exito');
+          this.deleteSectionEvent.emit(id);
+        },
+        error: (e: HttpErrorResponse) => {
+          this.errorService.msjError(e);
+          this.loading = false;
+        },
+      });
+    } else {
+      this.deleteSectionEvent.emit(id)
+    }
+    
   }
 }

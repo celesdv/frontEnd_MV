@@ -1,4 +1,8 @@
 .scroll {
-    max-height: 150px;
-    overflow-y: scroll;
-  }
+  max-height: 150px;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

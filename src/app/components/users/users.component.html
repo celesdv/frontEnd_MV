@@ -29,7 +29,7 @@
           <td class="align-middle fw-semibold">{{c.first_name}}</td>
           <td class="align-middle fw-semibold">{{c.last_name}}</td>
           <td class="align-middle">{{c.email}}</td>
-          <td class="align-middle">{{c.phone}}</td>
+          <td class="align-middle">{{c.phone | phoneMask}}</td>
           <td class="align-middle">{{c.roleId != 1 ? 'Usuario' : 'Administador'}}
           </td>
           <td class="d-grid gap-2 d-md-flex justify-content-md-end">

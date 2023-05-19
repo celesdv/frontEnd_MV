@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Booking } from 'src/app/interfaces/booking';
@@ -26,7 +27,8 @@ export class BookingStatusComponent implements OnInit {
     private toastr: ToastrService,
     private bookingService: BookingService,
     private incomeService: IncomeService,
-    private outcomeServide: OutcomeService
+    private outcomeServide: OutcomeService,
+    public router: Router,
   ) {
     for (let index = 0; index < 10; index++) {
       this.now.push(moment().add(index, 'days').format().substring(0, 10));
@@ -82,5 +84,9 @@ export class BookingStatusComponent implements OnInit {
     });
     console.log(totalIncomes)
     return totalIncomes
+  }
+
+  goToByBooking(id:number){
+    this.router.navigateByUrl(`byBooking/${id}`);
   }
 }

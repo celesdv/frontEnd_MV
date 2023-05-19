@@ -36,7 +36,7 @@
                 <div class="card p-2 text-bg-primary">
                     <h4>Cuenta corriente:</h4>
                     <h5 class="m-0 mx-3">
-                        $ {{total.toFixed(2)}}
+                        {{total | currency}}
                         <span *ngIf="total > 0"> adeudado</span>
                         <span *ngIf="total < 0"> a favor</span>
                     </h5>
@@ -60,9 +60,9 @@
                 <tbody *ngFor="let c of outcomes; index as i;">
                     <tr>
                         <td class="align-middle">{{c.currency}}</td>
-                        <td class="align-middle">$ {{c.total.toFixed(2)}} ARS</td>
-                        <td class="align-middle">$ {{c.total_usd.toFixed(2)}} USD</td>
-                        <td class="align-middle">{{c.date.substring(0,10).split('-').reverse().join('-')}}</td>
+                        <td class="align-middle">{{c.total | currency}} ARS</td>
+                        <td class="align-middle">{{c.total_usd | currency}} USD</td>
+                        <td class="align-middle">{{c.date | date:'dd/MM/yyyy'}}</td>
                         <td class="align-middle">
                             {{c.bookingId ? c.booking?.reference : "" }}                         
                         </td>

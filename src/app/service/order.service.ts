@@ -44,4 +44,8 @@ export class OrderService {
   deleteOrder(id: number): Observable<void> {
     return this.http.delete<void>(`${this.url}${this.api}${id}`);
   }
+
+  isBudget(id: number, order: Order): Observable<void> {
+    return this.http.put<void>(`${this.url}${this.api}${id}/isBudget`, order);
+  }
 }

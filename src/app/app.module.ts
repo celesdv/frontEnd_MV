@@ -60,6 +60,9 @@ import { ByClientComponent } from './components/by-client/by-client.component';
 import { ByCountComponent } from './components/by-count/by-count.component';
 import { BySupplierComponent } from './components/by-supplier/by-supplier.component';
 import { ByBookingComponent } from './components/by-booking/by-booking.component';
+import { PhoneMaskPipe } from './shared/pipes/phone-mask.pipe';
+import { CbuMaskPipe } from './shared/pipes/cbu-mask.pipe';
+import { CuilMaskPipe } from './shared/pipes/cuil-mask.pipe';
 
 @NgModule({
   declarations: [
@@ -113,6 +116,9 @@ import { ByBookingComponent } from './components/by-booking/by-booking.component
     ByCountComponent,
     BySupplierComponent,
     ByBookingComponent,
+    PhoneMaskPipe,
+    CbuMaskPipe,
+    CuilMaskPipe,
   ],
   imports: [
     BrowserModule,

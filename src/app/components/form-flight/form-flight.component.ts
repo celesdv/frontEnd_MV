@@ -76,9 +76,11 @@ export class FormFlightComponent implements OnInit {
       this.newI.splice(index, 1);
   }
 
-  deleteSection(index: number) {
+  deleteSection(id:number, index: number) {
+    this.loading = true
+    this.sections = this.sections.filter((section:Section) => {section.id = id})
     this.newI.splice(index, 1);
-    this.sections.splice(index, 1);
+    this.loading = false
   }
 
   editFlight(id: number) {
@@ -101,10 +103,12 @@ export class FormFlightComponent implements OnInit {
           detail: data.detail,
           supplierId: data.supplierId,
         });
+        let c = 0
         data.sections.forEach(e => {
           if (!e.soft_delete) {
             this.sections.push(e);
-            this.newI.push(0);
+            this.newI.push(c);
+            c++
           }
         });
         this.loading = false;

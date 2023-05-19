@@ -132,7 +132,6 @@ export class FormBookingComponent implements OnInit {
 
   addNewPax(pax: Pax, index: number) {
     this.paxes.splice(index, 1, pax);
-    console.log(this.paxes);
   }
 
   deleteP(index: number) {

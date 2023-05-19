@@ -27,8 +27,8 @@
         <tr *ngFor="let c of suppliers; index as i;">
           <td class="align-middle fw-semibold">{{c.name}}</td>
           <td class="align-middle">{{c.email}}</td>
-          <td class="align-middle">{{c.phone}}</td>
-          <td class="align-middle">{{c.cbu}}</td>
+          <td class="align-middle">{{c.phone | phoneMask}}</td>
+          <td class="align-middle">{{c.cbu | cbuMask}}</td>
           <td class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy
               data-tippy-content="Editar" routerLink="form/{{c.id}}">

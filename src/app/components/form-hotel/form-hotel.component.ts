@@ -17,7 +17,7 @@ export class FormHotelComponent implements OnInit {
   @Input() hot!: Hotel;
   @Output() newHotelEvent = new EventEmitter<Hotel>();
   @Output() closeHotelEvent = new EventEmitter<void>();
-  @Output() deleteHotelEvent = new EventEmitter<void>();
+  @Output() deleteHotelEvent = new EventEmitter<number>();
 
   added: boolean = false;
   loading: boolean = false;
@@ -109,21 +109,27 @@ export class FormHotelComponent implements OnInit {
   }
 
   close() {
-    this.closeHotelEvent.emit()
+    if(!this.hot) {
+      this.closeHotelEvent.emit()
+    }     
     this.added = true
   }
 
   deleteHotel(id:number) {
     console.log(id)
-    this.hotelService.deleteHotel(id).subscribe({
-      next: () => {
-        this.toastr.info('Registro Eliminado', 'Exito');
-        this.deleteHotelEvent.emit()
-      },
-      error: (e: HttpErrorResponse) => {
-        this.errorService.msjError(e);
-        this.loading = false;
-      },
-    });
-  }
+    if(id) {
+      this.hotelService.deleteHotel(id).subscribe({
+        next: () => {
+          this.toastr.info('Registro Eliminado', 'Exito');
+          this.deleteHotelEvent.emit(id)
+        },
+        error: (e: HttpErrorResponse) => {
+          this.errorService.msjError(e);
+          this.loading = false;
+        },
+      });
+    }  else {
+      this.deleteHotelEvent.emit(id)
+    }  
+  } 
 }

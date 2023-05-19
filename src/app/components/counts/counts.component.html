@@ -13,7 +13,7 @@
   <div class="card-body">
     <h5 class="card-title">Listado de Cuentas</h5>
 
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Cuenta</th>
@@ -29,7 +29,7 @@
         <tr *ngFor="let c of counts; index as i;">
           <td class="align-middle fw-semibold">{{c.name}}</td>
           <td class="align-middle">{{c.alias}}</td>
-          <td class="align-middle">{{c.cbu}}</td>
+          <td class="align-middle">{{c.cbu | cbuMask}}</td>
           <td class="align-middle">{{c.tax_income ? c.tax_income : 0}} %</td>
           <td class="align-middle">{{c.tax_outcome ? c.tax_outcome : 0}} %</td>
           <td class="align-middle">{{c.detail}}</td>

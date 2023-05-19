@@ -1,7 +1,7 @@
 <div class="card m-3">
     <div class="card-body">
         <h5 class="card-title">Listado de Excursiones</h5>
-        <table class="table" *ngIf="!loading">
+        <table class="table table-hover" *ngIf="!loading">
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
@@ -15,7 +15,7 @@
                 <tr *ngFor="let c of excursions; index as i;">
                     <td class="align-middle">{{c.name}}</td>
                     <td class="align-middle">{{c.date}}</td>
-                    <td class="align-middle">$ {{c.value + c.tax}} </td>
+                    <td class="align-middle">{{c.value + c.tax | currency}} </td>
                     <td class="align-middle"><span *ngIf="c.supplier">{{c.supplier.name}}</span></td>
                     <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <div class="p-2 bg-warning text-center rounded-circle" style="width: 2.5rem;" ngxTippy

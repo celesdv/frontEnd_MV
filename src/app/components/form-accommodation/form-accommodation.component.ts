@@ -80,9 +80,11 @@ export class FormAccommodationComponent implements OnInit {
     }
   }
 
-  deleteHotel(index: number) {
+  deleteHotel(id: number, index: number) {
+    this.loading = true;
+    this.hotels = this.hotels.filter((hotel: Hotel) => hotel.id != id);
     this.newH.splice(index, 1);
-    this.hotels.splice(index, 1);
+    this.loading = false;
   }
 
   addExtra() {
@@ -94,12 +96,14 @@ export class FormAccommodationComponent implements OnInit {
   }
 
   deleteE(index: number) {
-      this.newE.splice(index, 1);
+    this.newE.splice(index, 1);
   }
 
-  deleteExtra(index: number) {
+  deleteExtra(id: number, index: number) {
+    this.loading = true;
+    this.extras = this.extras.filter((extra: Extra) => extra.id != id);
     this.newE.splice(index, 1);
-    this.extras.splice(index, 1);
+    this.loading = false;
   }
 
   editAccommodation(id: number) {
@@ -128,10 +132,10 @@ export class FormAccommodationComponent implements OnInit {
           }
         });
         data.extras.forEach((e) => {
-          if(!e.soft_delete) {
-            this.extras.push(e)
+          if (!e.soft_delete) {
+            this.extras.push(e);
             this.newE.push(0);
-          }          
+          }
         });
         this.loading = false;
       },

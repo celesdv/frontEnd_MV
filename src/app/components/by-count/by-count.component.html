@@ -5,7 +5,7 @@
         </div>
         <div class="d-md-flex justify-content-between gap-3 w-50 p-1">
             <div class="input-group ml-2">
-                <span class="input-group-text" style="width: 30%; height: 100%;">Clientes</span>
+                <span class="input-group-text" style="width: 30%; height: 100%;">Cuentas</span>
                 <select class="form-select" #client (change)="onChange($event.target)"
                     placeholder="Seleccione el cliente">
                     <option selected value="{{null}}">Selecciona la Cuenta</option>
@@ -29,7 +29,7 @@
                     <h4>Cuenta corriente:</h4>
                     <h5 class="m-0 mx-3">
                         <span *ngIf="currency === 'USD'">USD </span>
-                        $ {{total}}
+                        {{total| currency}}
                         <span *ngIf="total < 0"> adeudado</span>
                         <span *ngIf="total > 0"> a favor</span>
                     </h5>
@@ -53,9 +53,9 @@
                     <tr *ngIf="(currency === 'ARS' && c.total > 0) || (currency === 'USD' && c.total_usd > 0)"
                         class="bg-success-subtle">
                         <td class="align-middle">{{c.currency}}</td>
-                        <td class="align-middle">$ {{c.total.toFixed(2)}} ARS</td>
-                        <td class="align-middle">$ {{c.total_usd}} USD</td>
-                        <td class="align-middle">{{c.date.substring(0,10).split('-').reverse().join('-')}}</td>
+                        <td class="align-middle">{{c.total | currency}} ARS</td>
+                        <td class="align-middle">{{c.total_usd | currency}} USD</td>
+                        <td class="align-middle">{{c.date | date:'dd/MM/yyyy'}}</td>
                         <td class="align-middle">
                             {{c.clientId ? c.client.first_name+" "+c.client.last_name : "" }}
                         </td>
@@ -66,9 +66,9 @@
                     <tr *ngIf="(currency === 'ARS' && c.total < 0) || (currency === 'USD' && c.total_usd < 0)"
                         class="bg-danger-subtle">
                         <td class="align-middle">{{c.currency}}</td>
-                        <td class="align-middle">$ {{c.total.toFixed(2)}} ARS</td>
-                        <td class="align-middle">$ {{c.total_usd}} USD</td>
-                        <td class="align-middle">{{c.date.substring(0,10).split('-').reverse().join('-')}}</td>
+                        <td class="align-middle">{{c.total| currency}} ARS</td>
+                        <td class="align-middle">{{c.total_usd| currency}} USD</td>
+                        <td class="align-middle">{{c.date | date:'dd/MM/yyyy'}}</td>
                         <td class="align-middle">
                             {{c.supplierId ? c.supplier.name : "" }}
                         </td>
