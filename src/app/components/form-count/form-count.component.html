@@ -23,7 +23,7 @@
           <div class="input-group mb-2">
             <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">CBU</span>
             <input type="text" step="1" pattern="\d+" class="form-control"
-              formControlName="cbu" maxlength="20"
+              formControlName="cbu" maxlength="23"
               >
           </div>
           <p *ngIf="this.form.get('cbu')?.errors?.['pattern'] && form.get('cbu')?.touched"
