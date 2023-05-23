@@ -183,7 +183,7 @@ export class BudgetResumenComponent implements OnInit {
             setI(10);
             doc.text(f.origin + ' - ' + f.destination, 40, i);
             setI(5);
-            doc.text('Fecha: ' + f.baggage, 40, i);
+            doc.text('Fecha: ' + f.date, 40, i);
             if (f.baggage) {
               setI(5);
               doc.text('Equipaje: ' + f.baggage, 40, i);
@@ -417,7 +417,7 @@ export class BudgetResumenComponent implements OnInit {
 
       doc.setFontSize(12);
       setI(10);
-      doc.text('Precio: $' + this.budget.total, 30, i);
+      doc.text('Precio: ' + this.formatCurrency(this.budget.total) , 30, i);
 
       if (this.budget.detail) {
         setI(5);
@@ -435,5 +435,12 @@ export class BudgetResumenComponent implements OnInit {
           '.pdf'
       );
     }
+  }
+
+  formatCurrency(price:any){
+    let number = Number(price)
+    let currency = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(number)
+    console.log(currency)
+    return currency
   }
 }
