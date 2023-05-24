@@ -26,17 +26,19 @@ import { ByClientComponent } from './components/by-client/by-client.component';
 import { ByCountComponent } from './components/by-count/by-count.component';
 import { BySupplierComponent } from './components/by-supplier/by-supplier.component';
 import { ByBookingComponent } from './components/by-booking/by-booking.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'clients', component: ClientsComponent, canActivate: [AuthGuard] },
   { path: 'clients/form', component: FormClientComponent, canActivate: [AuthGuard] },
   { path: 'clients/form/:id', component: FormClientComponent, canActivate: [AuthGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'users/form', component: FormUserComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: 'users/form/:id', component: FormUserComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'users/form/:id', component: FormUserComponent, canActivate: [AuthGuard] },
   { path: 'counts', component: CountsComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'counts/form', component: FormCountComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'counts/form/:id', component: FormCountComponent, canActivate: [AuthGuard, AdminGuard] },

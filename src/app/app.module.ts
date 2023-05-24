@@ -63,6 +63,7 @@ import { ByBookingComponent } from './components/by-booking/by-booking.component
 import { PhoneMaskPipe } from './shared/pipes/phone-mask.pipe';
 import { CbuMaskPipe } from './shared/pipes/cbu-mask.pipe';
 import { CuilMaskPipe } from './shared/pipes/cuil-mask.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { CuilMaskPipe } from './shared/pipes/cuil-mask.pipe';
     PhoneMaskPipe,
     CbuMaskPipe,
     CuilMaskPipe,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

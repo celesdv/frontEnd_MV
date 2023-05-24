@@ -1,0 +1,59 @@
+<div class="col-lg-3 offset-lg-3">
+    <div class="card m-3" style="min-width: 40rem;" *ngIf="!loading">
+        <div class="card-header">
+            Mi Perfil
+        </div>
+        <div class="card-body d-flex">
+            <div class="m-3 shadow-lg rounded text-bg-primary" *ngIf="user.roleId ===1">
+                <i class="bi bi-person-circle m-4" style="font-size: 7rem; color: white;"></i>
+            </div>
+            <div class="m-3 shadow-lg rounded text-bg-success" *ngIf="user.roleId ===2">
+                <i class="bi bi-person-circle m-4" style="font-size: 7rem; color: white;"></i>
+            </div>
+            <div class="m-3 d-flex align-items-start flex-column w-100" *ngIf="!editPass">
+                <div>
+                    <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+                    <p class="card-text m-0">Email: {{user.email}}</p>
+                    <p class="card-text m-0">Télefono: {{user.phone | phoneMask}}</p>
+                </div>
+                <div class="d-flex justify-content-end mt-auto w-100">
+                    <a class="btn btn-success me-2" (click)="updatePassword()">Editar Contraseña</a>
+                    <a class="btn btn-warning" routerLink="/users/form/{{user.id}}">Editar Usuario</a>
+                </div>
+            </div>
+            <div class="m-3 d-flex align-items-start flex-column w-100" *ngIf="editPass">
+                <form [formGroup]="form" (ngSubmit)="accept()">
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 40%;"
+                            required>Contaseña Actual</span>
+                        <input type="password" class="form-control" formControlName="oldPass">
+                    </div>
+                    <p *ngIf="this.form.get('oldPass')?.errors?.['required'] && form.get('oldPass')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe ingresar su contraseña
+                    </p>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="width: 40%;" required>Nueva
+                            Contraseña</span>
+                        <input type="password" class="form-control" formControlName="newPass">
+                    </div>
+                    <p *ngIf="this.form.get('newPass')?.errors?.['required'] && form.get('newPass')?.touched"
+                        class="text-danger fw-semibold ms-2" style="font-size: 12px;">
+                        Debe ingresar su nueva contraseña
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-between m-2">
+                        <div ngxTippy data-tippy-content="Volver atras" (click)="updatePassword()">
+                            <i class="bi bi-arrow-left-circle-fill" style="color: #6f42c1; font-size: 2.25rem;"></i>
+                        </div>
+                        <div>
+                            <button [disabled]="form.invalid" class="btn btn-success mt-2"
+                                type="submit">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
