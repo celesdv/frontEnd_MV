@@ -65,29 +65,27 @@
   </div>
 </div>
 
-<div class="card mt-3" *ngIf="router.url === '/dashboard'">
-  <div class="table-responsive p-3">
-    <table class="table table-borderless align-middle" *ngIf="!loading">
-      <thead>
-        <tr>
-          <th scope="col">Nombre</th>
-          <th scope="col" class="text-center">Destino</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        <tr *ngFor="let c of orders; index as i;">
-          <td class="align-middle" *ngIf="c.is_budget === false">{{c.name}}</td>
-          <td class="align-middle text-center" *ngIf="c.is_budget === false">{{c.destination}}</td>
-          <td class="d-grid d-md-flex justify-content-md-end" *ngIf="c.is_budget === false">
-            <div class="p-2 bg-success text-center rounded-circle " style="width: 2.5rem;" ngxTippy
-              data-tippy-content="Presupuestar" (click)="toBudget(c.id!)">
-              <i class="bi bi-file-spreadsheet" style="color: white;"></i>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <app-spinner *ngIf="loading"></app-spinner>
-  </div>
+<div class="card m-0 p-0" *ngIf="router.url === '/dashboard'">
+  <table class="table table-borderless align-middle " *ngIf="!loading">
+    <thead class="sticky-top bg-light text-dark">
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col" class="text-center">Destino</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let c of orders; index as i;">
+        <td class="align-middle" *ngIf="c.is_budget === false">{{c.name}}</td>
+        <td class="align-middle text-center" *ngIf="c.is_budget === false">{{c.destination}}</td>
+        <td class="d-grid d-md-flex justify-content-md-end" *ngIf="c.is_budget === false">
+          <div class="p-2 bg-success text-center rounded-circle " style="width: 2.5rem;" ngxTippy
+            data-tippy-content="Presupuestar" (click)="toBudget(c.id!)">
+            <i class="bi bi-file-spreadsheet" style="color: white;"></i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-spinner *ngIf="loading"></app-spinner>
 </div>

@@ -1,11 +1,44 @@
-<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary sticky-top" data-bs-theme="dark">
+<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary sticky-top" data-bs-theme="dark" >
   <div class="container-fluid m-2">
     <a class="navbar-brand" routerLink="/dashboard">MELCEJ Viajes</a>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end"> 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      *ngIf="router.url != '/login'">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="router.url != '/login'">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/orders">Pedidos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/budgets">Presupuestos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/bookings">Reservas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/accounting">Contabilidad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/clients">Clientes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/users">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/counts">Cuentas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/suppliers">Proveedores</a>
+        </li>
+      </ul>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-outline-light me-md-2" type="button" routerLink="/profile"
         *ngIf="router.url != '/login'"><i class="bi bi-person-fill"></i> Perfil</button>
-      <button class="btn btn-outline-light me-md-2" (click)="logOut()" type="button"
-        *ngIf="router.url != '/login'"><i class="bi bi-box-arrow-left"></i> Salir</button>
+      <button class="btn btn-outline-light me-md-2" (click)="logOut()" type="button" *ngIf="router.url != '/login'"><i
+          class="bi bi-box-arrow-left"></i> Salir</button>
     </div>
   </div>
 </nav>

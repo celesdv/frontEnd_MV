@@ -2,3 +2,13 @@
   max-height: 13rem;
   height: 100%;
 }
+
+.scroll {
+  margin-top: 1rem;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
