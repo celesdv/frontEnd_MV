@@ -25,7 +25,7 @@
                         <span class="input-group-text" style="width: 30%; height: 100%;">Clientes</span>
                         <select class="form-select mb-2" formControlName="clientId">
                             <option *ngFor="let c of clients ; index as i;" value="{{c.id}}">
-                                {{c.first_name}} / {{c.last_name}}
+                                {{c.first_name}} {{c.last_name}}
                             </option>
                         </select>
                     </div>
