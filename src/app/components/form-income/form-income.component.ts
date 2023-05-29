@@ -235,7 +235,7 @@ export class FormIncomeComponent implements OnInit {
         date: this.form.value.date,
         userId: this.userId,
         countId: this.form.value.countId,
-        supplierId: 3,
+        supplierId: 7,
         detail: 'Ingresos Brutos',
       };
 
@@ -256,8 +256,8 @@ export class FormIncomeComponent implements OnInit {
       date: this.form.value.date,
       userId: this.userId,
       countId: this.form.value.countId,
-      supplierId: 4,
-      detail: 'Impuesto al Debito',
+      supplierId: 8,
+      detail: 'Impuesto a los Débitos y Créditos',
     };
 
     this.outcomeService.addOutcome(outcome).subscribe({
