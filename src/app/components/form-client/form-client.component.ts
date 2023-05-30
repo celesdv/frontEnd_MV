@@ -29,7 +29,7 @@ export class FormClientComponent implements OnInit {
     this.form = this.formBuilder.group({
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      email: ['', Validators.email],
+      email: ['', [Validators.email, Validators.required]],
       address: [],
       phone: [],
       cuil: [],

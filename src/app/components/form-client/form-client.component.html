@@ -27,9 +27,9 @@
             <span class="input-group-text" id="inputGroup-sizing-default" style="width: 30%;">Email</span>
             <input type="email" class="form-control" formControlName="email">
           </div>
-          <p *ngIf="this.form.get('email')?.errors?.['email'] && form.get('email')?.touched"
+          <p *ngIf="this.form.get('email')?.errors?.['email'] || this.form.get('email')?.errors?.['required'] && form.get('email')?.touched"
             class="text-danger fw-semibold ms-2" style="font-size: 12px;">
-            Debe ingresar un apellido
+            Debe ingresar un email valido
           </p>
 
           <div class="input-group mb-2">
