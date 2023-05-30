@@ -50,7 +50,7 @@ export class FormBookingComponent implements OnInit {
       budgetId: [, [Validators.required]],
       clientId: [, [Validators.required]],
       total: [, [Validators.required]],
-      supplierId: []
+      supplierId: [],
     });
     this.id = Number(aRoute.snapshot.paramMap.get('id'));
   }
@@ -73,7 +73,7 @@ export class FormBookingComponent implements OnInit {
       error: (e: HttpErrorResponse) => {
         this.errorService.msjError(e);
       },
-    })
+    });
   }
 
   getClients() {
@@ -109,7 +109,7 @@ export class FormBookingComponent implements OnInit {
           budgetId: data.budgetId,
           clientId: data.clientId,
           total: data.total,
-          supplierId: data.supplierId
+          supplierId: data.supplierId,
         });
         data.paxes.forEach((e) => {
           if (!e.soft_delete) {
@@ -151,12 +151,12 @@ export class FormBookingComponent implements OnInit {
       const booking: Booking = {
         reference: this.form.value.reference,
         detail: this.form.value.detail,
-        travel_date: this.form.value.travel_date,
+        travel_date: this.form.value.travel_date + ' 00:00:00',
         budgetId: this.form.value.budgetId,
         clientId: this.form.value.clientId,
         paxes: this.paxes,
         total: this.form.value.total,
-        supplierId: this.form.value.supplierId
+        supplierId: this.form.value.supplierId,
       };
       if (this.id !== 0) {
         booking.id = this.id;

@@ -71,9 +71,9 @@ export class FormPaxComponent implements OnInit {
       first_name: this.form.value.first_name,
       last_name: this.form.value.last_name,
       dni: this.form.value.dni,
-      birth_date: this.form.value.birth_date,
+      birth_date: this.form.value.birth_date + ' 00:00:00',
       passport: this.form.value.passport,
-      expiration: this.form.value.expiration,
+      expiration: this.form.value.expiration + ' 00:00:00',
     };
     if (this.pax) {
       this.newPax.id = this.pax.id;

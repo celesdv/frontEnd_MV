@@ -18,7 +18,7 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-form-outcome',
   templateUrl: './form-outcome.component.html',
-  styleUrls: ['./form-outcome.component.css']
+  styleUrls: ['./form-outcome.component.css'],
 })
 export class FormOutcomeComponent implements OnInit {
   loading: boolean = true;
@@ -31,7 +31,7 @@ export class FormOutcomeComponent implements OnInit {
   users: User[] = [];
   token = localStorage.getItem('token');
   userId: any;
-  count!:Count
+  count!: Count;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,7 +63,7 @@ export class FormOutcomeComponent implements OnInit {
     this.getUserId();
     if (this.id != 0) {
       this.action = 'Editar ';
-      this.getOutcome(this.id);      
+      this.getOutcome(this.id);
     } else {
       this.getSuppliers();
     }
@@ -100,7 +100,7 @@ export class FormOutcomeComponent implements OnInit {
     });
   }
 
-  getBookings() {    
+  getBookings() {
     this.bookingService.getBookingsOnly().subscribe({
       next: (data: Booking[]) => {
         this.bookings = data;
@@ -118,7 +118,7 @@ export class FormOutcomeComponent implements OnInit {
     this.countService.getCounts().subscribe({
       next: (data: Count[]) => {
         this.counts = data;
-        this.loading = false
+        this.loading = false;
       },
       error: (e: HttpErrorResponse) => {
         this.errorService.msjError(e);
@@ -138,7 +138,7 @@ export class FormOutcomeComponent implements OnInit {
           countId: data.countId,
           supplierId: data.supplierId,
           bookingId: data.bookingId,
-          detail: data.detail,          
+          detail: data.detail,
         });
         this.getUsers();
       },
@@ -151,7 +151,7 @@ export class FormOutcomeComponent implements OnInit {
   accept() {
     this.loading = true;
     if (this.form.valid) {
-      let tax = 0;      
+      let tax = 0;
 
       if (this.form.value.currency === 'ARS') {
         this.counts.forEach((element) => {
@@ -161,19 +161,19 @@ export class FormOutcomeComponent implements OnInit {
             if (element.tax_outcome > 0) this.createOutcome(tax);
           }
         });
-      }  
+      }
 
       const outcome: Outcome = {
         total: this.form.value.total,
         total_usd: this.form.value.total_usd,
         currency: this.form.value.currency,
-        date: this.form.value.date,
+        date: this.form.value.date + ' 00:00:00',
         userId: this.form.value.userId,
         countId: this.form.value.countId,
         supplierId: this.form.value.supplierId,
         bookingId: this.form.value.bookingId,
         detail: this.form.value.detail,
-      };     
+      };
 
       if (this.id !== 0) {
         outcome.id = this.id;
@@ -217,7 +217,7 @@ export class FormOutcomeComponent implements OnInit {
       total: tax,
       total_usd: 0,
       currency: 'ARS',
-      date: this.form.value.date,
+      date: this.form.value.date + ' 00:00:00',
       userId: this.userId,
       countId: this.form.value.countId,
       supplierId: 4,

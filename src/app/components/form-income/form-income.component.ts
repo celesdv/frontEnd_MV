@@ -155,7 +155,7 @@ export class FormIncomeComponent implements OnInit {
     this.loading = true;
 
     if (this.form.valid) {
-      let tax = 0;      
+      let tax = 0;
 
       if (this.form.value.currency === 'ARS') {
         this.counts.forEach((element) => {
@@ -171,13 +171,14 @@ export class FormIncomeComponent implements OnInit {
         total: this.form.value.total,
         total_usd: this.form.value.total_usd,
         currency: this.form.value.currency,
-        date: this.form.value.date,
+        date: this.form.value.date + ' 00:00:00',
         userId: this.form.value.userId,
         countId: this.form.value.countId,
         clientId: this.form.value.clientId,
         bookingId: this.form.value.bookingId,
         detail: this.form.value.detail,
       };
+      console.log(income.date);
 
       if (this.id !== 0) {
         income.id = this.id;
@@ -232,7 +233,7 @@ export class FormIncomeComponent implements OnInit {
         total: (tax * ib) / 100,
         total_usd: 0,
         currency: 'ARS',
-        date: this.form.value.date,
+        date: this.form.value.date + ' 00:00:00',
         userId: this.userId,
         countId: this.form.value.countId,
         supplierId: 7,
@@ -253,7 +254,7 @@ export class FormIncomeComponent implements OnInit {
       total: value,
       total_usd: 0,
       currency: 'ARS',
-      date: this.form.value.date,
+      date: this.form.value.date + ' 00:00:00',
       userId: this.userId,
       countId: this.form.value.countId,
       supplierId: 8,
