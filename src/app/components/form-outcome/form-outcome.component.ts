@@ -220,7 +220,7 @@ export class FormOutcomeComponent implements OnInit {
       date: this.form.value.date + ' 00:00:00',
       userId: this.userId,
       countId: this.form.value.countId,
-      supplierId: 4,
+      supplierId: 8,
       detail: 'Impuesto al Debito',
     };
 
