@@ -194,20 +194,26 @@ export class BudgetResumenComponent implements OnInit {
               doc.text('Tramos: ', 40, i);
               f.sections.forEach((s: Section) => {
                 if (!s.soft_delete) {
-                  setI(5);
-                  doc.text(`${s.name} | Compañia:  ${s.company}`, 50, i);
-                  setI(5);
-                  doc.text(
-                    'Salida: ' + this.formatFecha(s.calendar_origin),
-                    60,
-                    i
-                  );
-                  setI(5);
-                  doc.text(
-                    'Llegada: ' + this.formatFecha(s.calendar_destination),
-                    60,
-                    i
-                  );
+                  if(s.name && s.company) {
+                    setI(5);
+                    doc.text(`${s.name} | Compañia:  ${s.company}`, 50, i);
+                  }
+                  if(Number(s.calendar_origin.substring(0,4)) > 2022) {
+                    setI(5);
+                    doc.text(
+                      'Salida: ' + this.formatFecha(s.calendar_origin),
+                      60,
+                      i
+                    );
+                  }
+                  if(Number(s.calendar_destination.substring(0,4)) > 2022) {
+                    setI(5);
+                    doc.text(
+                      'Llegada: ' + this.formatFecha(s.calendar_destination),
+                      60,
+                      i
+                    );
+                  } 
                 }
               });
             }
